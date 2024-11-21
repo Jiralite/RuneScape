@@ -1,4 +1,6 @@
+import { RuneScapeAPIError } from "./utility/error.js";
 import { transformName } from "./utility/functions.js";
+import { makeRequest } from "./utility/make-request.js";
 
 /**
  * Represents the options to provide for retrieving a player's avatar.
@@ -118,4 +120,35 @@ export function playerPage({ name }: PlayerPageOptions): { [key in PlayerPage]: 
 		[PlayerPage.RunePixels]: `https://runepixels.com/players/${transformName(name, "-")}`,
 		[PlayerPage.RuneTracker]: `https://runetracker.org/track-${transformName(name, "+")}`,
 	};
+}
+
+/**
+ * Represents the options to provide for fetching the player count.
+ */
+export interface PlayerCountOptions {
+	/**
+	 * The abort signal for the fetch.
+	 */
+	abortSignal?: AbortSignal | undefined;
+}
+
+/**
+ * Retrieves the total number of players online in RuneScape and OldSchool RuneScape.
+ *
+ * @param options - The options to provide
+ * @returns The number of online players.
+ */
+export async function playerCount({ abortSignal }: PlayerCountOptions = {}): Promise<number> {
+	const urlSearchParams = new URLSearchParams();
+	urlSearchParams.set("varname", "iPlayerCount");
+	urlSearchParams.set("callback", "jQuery000000000000000_0000000000");
+	const url = `https://runescape.com/player_count.js?${urlSearchParams}` as const;
+	const response = await makeRequest(url, abortSignal);
+
+	if (!response.ok) {
+		throw new RuneScapeAPIError("Error fetching Group Ironman HiScore data.", response.status, url);
+	}
+
+	const body = await response.text();
+	return Number(body.slice(body.indexOf("(") + 1, body.indexOf(")")));
 }

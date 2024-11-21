@@ -22,6 +22,8 @@ export {
 	PlayerPage,
 	type PlayerPageOptions,
 	playerPage,
+	type PlayerCountOptions,
+	playerCount,
 } from "./miscellaneous.js";
 export { type PlayerDetail, type PlayerDetailsOptions, playerDetails } from "./player-details.js";
 export {
