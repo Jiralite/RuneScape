@@ -146,7 +146,7 @@ export async function playerCount({ abortSignal }: PlayerCountOptions = {}): Pro
 	const response = await makeRequest(url, abortSignal);
 
 	if (!response.ok) {
-		throw new RuneScapeAPIError("Error fetching Group Ironman HiScore data.", response.status, url);
+		throw new RuneScapeAPIError("Error fetching the player count.", response.status, url);
 	}
 
 	const body = await response.text();
