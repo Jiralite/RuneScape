@@ -152,3 +152,60 @@ export async function playerCount({ abortSignal }: PlayerCountOptions = {}): Pro
 	const body = await response.text();
 	return Number(body.slice(body.indexOf("(") + 1, body.indexOf(")")));
 }
+
+interface RawCreatedAccounts {
+	accounts: number;
+	accountsformatted: string;
+}
+
+/**
+ * Represents the data of the amount of created accounts.
+ */
+export interface CreatedAccounts {
+	/**
+	 * The amount of created accounts.
+	 */
+	accounts: number;
+	/**
+	 * A string representation of {@link CreatedAccounts.accounts}, formatted with commas.
+	 */
+	accountsFormatted: string;
+}
+
+/**
+ * Represents the options to provide for fetching the amount of created accounts.
+ */
+export interface CreatedAccountsOptions {
+	/**
+	 * The abort signal for the fetch.
+	 */
+	abortSignal?: AbortSignal | undefined;
+}
+
+/**
+ * Retrieves the amount of created accounts.
+ *
+ * @param options - The options to provide
+ * @returns An object with the created accounts data.
+ */
+export async function createdAccounts({
+	abortSignal,
+}: CreatedAccountsOptions = {}): Promise<CreatedAccounts> {
+	const url = "https://secure.runescape.com/m=account-creation-reports/rsusertotal.ws" as const;
+	const response = await makeRequest(url, abortSignal);
+
+	if (!response.ok) {
+		throw new RuneScapeAPIError(
+			"Error fetching the amount of created accounts.",
+			response.status,
+			url,
+		);
+	}
+
+	const body = (await response.json()) as RawCreatedAccounts;
+
+	return {
+		accounts: body.accounts,
+		accountsFormatted: body.accountsformatted,
+	};
+}
