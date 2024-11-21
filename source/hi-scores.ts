@@ -500,6 +500,12 @@ export interface GroupIronmanHiScoreOptions {
 	abortSignal?: AbortSignal | undefined;
 }
 
+/**
+ * Returns the Group Ironman HiScore data.
+ *
+ * @param options - The options to provide
+ * @returns The Group Ironman HiScore data.
+ */
 export async function groupIronman({
 	groupSize,
 	size,
