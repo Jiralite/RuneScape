@@ -66,7 +66,11 @@ export class RuneScapeAPIError extends Error {
 	 * @param statusCode - The status code of the error
 	 * @param url - The fully quallified URL of the request
 	 */
-	public constructor(name: Error["name"], statusCode: RuneScapeAPIError["statusCode"], url: RuneScapeAPIError["url"]) {
+	public constructor(
+		name: Error["name"],
+		statusCode: RuneScapeAPIError["statusCode"],
+		url: RuneScapeAPIError["url"],
+	) {
 		super(name);
 		this.statusCode = statusCode;
 		this.url = url;
@@ -99,7 +103,11 @@ export class RuneScapeError extends Error {
 	 * @param rawCode - The raw error that yielded this error
 	 * @param url - The fully quallified URL of the request
 	 */
-	public constructor(code: RuneScapeError["code"], rawCode: RuneScapeError["rawCode"], url: RuneScapeError["url"]) {
+	public constructor(
+		code: RuneScapeError["code"],
+		rawCode: RuneScapeError["rawCode"],
+		url: RuneScapeError["url"],
+	) {
 		super(Messages[code]);
 		this.code = code;
 		this.rawCode = rawCode;

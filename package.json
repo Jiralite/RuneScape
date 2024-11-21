@@ -2,42 +2,44 @@
 	"name": "runescape",
 	"version": "0.10.0",
 	"description": "A library to interact with the non-existent RuneScape API.",
-	"keywords": [
-		"RuneScape",
-		"Jagex",
-		"RS3"
-	],
+	"keywords": ["RuneScape", "Jagex", "RS3"],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Soulobby/RuneScape.git"
+		"url": "git+https://github.com/Jiralite/RuneScape.git"
 	},
 	"license": "MIT",
 	"author": "Jiralite",
 	"type": "module",
-	"main": "./distribution/index.js",
+	"exports": "./distribution/index.js",
 	"types": "./distribution/index.d.ts",
-	"files": [
-		"distribution"
-	],
+	"files": ["distribution"],
 	"scripts": {
-		"test": "tsc --noEmit",
 		"build": "tsup",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write . && eslint --fix .",
+		"test": "tsc --noEmit",
+		"lint": "biome check",
+		"format": "biome check --write",
 		"prepack": "pnpm run build && pnpm run lint",
 		"update": "pnpm update --interactive --latest && pre-commit autoupdate"
 	},
 	"dependencies": {
-		"dayjs": "^1.11.10",
-		"undici": "^6.6.2"
+		"dayjs": "^1.11.10"
 	},
 	"devDependencies": {
-		"@types/node": "^20.11.24",
-		"eslint": "^8.57.0",
-		"eslint-config-neon": "^0.1.59",
-		"prettier": "^3.2.5",
-		"tsup": "^8.0.2",
+		"@biomejs/biome": "^1.9.4",
+		"@types/node": "^22.9.1",
+		"tsup": "^8.3.5",
 		"typescript": "^5.3.3"
 	},
-	"packageManager": "pnpm@8.14.1"
+	"devEngines": {
+		"runtime": {
+			"name": "node",
+			"version": ">=20",
+			"onFail": "error"
+		},
+		"packageManager": {
+			"name": "pnpm",
+			"version": ">=9.14.2",
+			"onFail": "error"
+		}
+	}
 }

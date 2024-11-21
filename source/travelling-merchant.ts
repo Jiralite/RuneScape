@@ -1,4 +1,4 @@
-import { nextInt, runedate as utilityRunedate } from "./utility/utility.js";
+import { nextInt, runedate as utilityRunedate } from "./utility/functions.js";
 
 /**
  * Represents an item used in the shop.

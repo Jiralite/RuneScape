@@ -1,5 +1,5 @@
-import { makeRequest } from "./makeRequest.js";
-import { RuneScapeAPIError } from "./utility/index.js";
+import { RuneScapeAPIError } from "./utility/error.js";
+import { makeRequest } from "./utility/make-request.js";
 
 interface RawQuestDetail {
 	loggedIn: `${boolean}`;
@@ -13,23 +13,23 @@ export enum QuestDifficulty {
 	/**
 	 * The novice difficulty.
 	 */
-	Novice,
+	Novice = 0,
 	/**
 	 * The intermediate difficulty.
 	 */
-	Intermediate,
+	Intermediate = 1,
 	/**
 	 * The experienced difficulty.
 	 */
-	Experienced,
+	Experienced = 2,
 	/**
 	 * The master difficulty.
 	 */
-	Master,
+	Master = 3,
 	/**
 	 * The grandmaster difficulty.
 	 */
-	Grandmaster,
+	Grandmaster = 4,
 	/**
 	 * The special difficulty.
 	 */
@@ -461,12 +461,19 @@ export interface QuestDetailsOptions {
  * @param options - The options to provide
  * @returns An object containing the quest data.
  */
-export async function questDetails({ name, abortSignal }: QuestDetailsOptions): Promise<QuestDetails> {
+export async function questDetails({
+	name,
+	abortSignal,
+}: QuestDetailsOptions): Promise<QuestDetails> {
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("user", name);
 	const url = `https://apps.runescape.com/runemetrics/quests?${urlSearchParams}` as const;
 	const response = await makeRequest(url, abortSignal);
-	if (!response.ok) throw new RuneScapeAPIError("Error fetching quest data.", response.status, url);
+
+	if (!response.ok) {
+		throw new RuneScapeAPIError("Error fetching quest data.", response.status, url);
+	}
+
 	const body = (await response.json()) as RawQuestDetail;
 	const { quests, loggedIn } = body;
 

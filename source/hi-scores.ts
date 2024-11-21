@@ -1,5 +1,5 @@
-import { makeRequest } from "./makeRequest.js";
-import { RuneScapeAPIError } from "./utility/index.js";
+import { RuneScapeAPIError } from "./utility/error.js";
+import { makeRequest } from "./utility/make-request.js";
 
 /**
  * Represents the skills in RuneScape.
@@ -204,7 +204,11 @@ export async function hiScore({ name, abortSignal }: HiScoreOptions): Promise<Hi
 	urlSearchParams.set("player", name);
 	const url = `https://secure.runescape.com/m=hiscore/index_lite.ws?${urlSearchParams}` as const;
 	const response = await makeRequest(url, abortSignal);
-	if (!response.ok) throw new RuneScapeAPIError("Error fetching HiScore data.", response.status, url);
+
+	if (!response.ok) {
+		throw new RuneScapeAPIError("Error fetching HiScore data.", response.status, url);
+	}
+
 	const body = await response.text();
 	const dataLine = body.split("\n").map((line) => line.split(","));
 

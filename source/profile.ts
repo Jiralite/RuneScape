@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
-import { makeRequest } from "./makeRequest.js";
-import { ErrorCode, RuneScapeAPIError, RuneScapeError } from "./utility/index.js";
+import { ErrorCode, RuneScapeAPIError, RuneScapeError } from "./utility/error.js";
+import { makeRequest } from "./utility/make-request.js";
 
 interface RawProfile {
 	magic: number;
@@ -25,7 +25,7 @@ interface RawProfile {
  *
  * @internal
  */
-const enum ProfileErrorType {
+enum ProfileErrorType {
 	NoProfile = "NO_PROFILE",
 	NotAMember = "NOT_A_MEMBER",
 	ProfilePrivate = "PROFILE_PRIVATE",
@@ -78,34 +78,34 @@ export interface ProfileActivity {
  * Represents the enumeration of skills as returned from the API.
  */
 export enum SkillId {
-	Attack,
-	Defence,
-	Strength,
-	Constitution,
-	Ranged,
-	Prayer,
-	Magic,
-	Cooking,
-	Woodcutting,
-	Fletching,
-	Fishing,
-	Firemaking,
-	Crafting,
-	Smithing,
-	Mining,
-	Herblore,
-	Agility,
-	Thieving,
-	Slayer,
-	Farming,
-	Runecrafting,
-	Hunter,
-	Construction,
-	Summoning,
-	Dungeoneering,
-	Divination,
-	Invention,
-	Archaeology,
+	Attack = 0,
+	Defence = 1,
+	Strength = 2,
+	Constitution = 3,
+	Ranged = 4,
+	Prayer = 5,
+	Magic = 6,
+	Cooking = 7,
+	Woodcutting = 8,
+	Fletching = 9,
+	Fishing = 10,
+	Firemaking = 11,
+	Crafting = 12,
+	Smithing = 13,
+	Mining = 14,
+	Herblore = 15,
+	Agility = 16,
+	Thieving = 17,
+	Slayer = 18,
+	Farming = 19,
+	Runecrafting = 20,
+	Hunter = 21,
+	Construction = 22,
+	Summoning = 23,
+	Dungeoneering = 24,
+	Divination = 25,
+	Invention = 26,
+	Archaeology = 27,
 }
 
 /**
@@ -245,7 +245,11 @@ dayjs.extend(utc);
 export async function profile({ name, activities, abortSignal }: ProfileOptions): Promise<Profile> {
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("user", name);
-	if (typeof activities === "number") urlSearchParams.set("activities", String(activities));
+
+	if (typeof activities === "number") {
+		urlSearchParams.set("activities", String(activities));
+	}
+
 	const url = `https://apps.runescape.com/runemetrics/profile/profile?${urlSearchParams}` as const;
 	const response = await makeRequest(url, abortSignal);
 
@@ -256,7 +260,7 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
 	const body = (await response.json()) as ProfileError | RawProfile;
 
 	if ("error" in body) {
-		let code;
+		let code: (typeof ErrorCode)[keyof typeof ErrorCode];
 
 		switch (body.error) {
 			case ProfileErrorType.NotAMember:

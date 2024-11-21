@@ -1,5 +1,6 @@
 import { defineConfig } from "tsup";
 
+// biome-ignore lint/style/noDefaultExport: tsup documents this.
 export default defineConfig({
 	entry: ["source/index.ts"],
 	platform: "node",
@@ -7,7 +8,6 @@ export default defineConfig({
 	target: "esnext",
 	skipNodeModulesBundle: true,
 	clean: true,
-	splitting: false,
 	keepNames: true,
 	dts: true,
 	sourcemap: true,
