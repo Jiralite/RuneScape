@@ -7,6 +7,10 @@ export {
 	type HiScore,
 	type HiScoreOptions,
 	hiScore,
+	type GroupIronmanContent,
+	type GroupIronman,
+	type GroupIronmanHiScoreOptions,
+	groupIronman,
 } from "./hi-scores.js";
 export { Jewel, jewel } from "./jewels.js";
 export {
