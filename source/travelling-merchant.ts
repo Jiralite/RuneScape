@@ -91,7 +91,7 @@ const SLOTS = {
  */
 function getSlots(runedate: number, n1: number, n2: bigint) {
 	const seed = runedate * 2 ** 32 + (runedate % n1);
-	return nextInt(BigInt(seed), n2);
+	return nextInt(BigInt(Math.trunc(seed)), n2);
 }
 
 /**

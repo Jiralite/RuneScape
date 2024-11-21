@@ -15,7 +15,7 @@ export enum Jewel {
  * @returns The accessible jewel.
  */
 export function jewel(timestamp: number): Jewel | null {
-	const slot = nextInt(BigInt(runedate(timestamp)) * 2n ** 32n, 5n);
+	const slot = nextInt(BigInt(Math.trunc(runedate(timestamp))) * 2n ** 32n, 5n);
 
 	switch (slot) {
 		case 0n:
