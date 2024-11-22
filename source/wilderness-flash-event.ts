@@ -1,6 +1,5 @@
 const INITIAL_TIMESTAMP = Date.UTC(2_024, 1, 5, 12);
 
-/* eslint-disable typescript-sort-keys/string-enum */
 /**
  * The kind of Wilderness Flash Event.
  */
@@ -62,7 +61,6 @@ export enum WildernessFlashEvent {
 	 */
 	ButterflySwarm = "Butterfly Swarm",
 }
-/* eslint-enable typescript-sort-keys/string-enum */
 
 const WILDERNESS_FLASH_EVENTS = Object.values(WildernessFlashEvent);
 const WILDERNESS_FLASH_EVENTS_LENGTH = WILDERNESS_FLASH_EVENTS.length;
