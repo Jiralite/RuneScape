@@ -250,7 +250,7 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
 		urlSearchParams.set("activities", String(activities));
 	}
 
-	const url = `https://apps.runescape.com/runemetrics/profile/profile?${urlSearchParams}` as const;
+	const url = `https://apps.runescape.com/runemetrics/profile?${urlSearchParams}` as const;
 	const response = await makeRequest(url, abortSignal);
 
 	if (!response.ok) {
