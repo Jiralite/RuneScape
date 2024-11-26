@@ -139,6 +139,8 @@ function slot3(runedate: number) {
 export function stock(
 	timestamp: number,
 ): [(typeof SLOT_1_AND_2)[number], (typeof SLOT_1_AND_2)[number], (typeof SLOTS)[3][number]] {
-	const currentRunedate = utilityRunedate(timestamp);
+	const date = new Date(timestamp);
+	date.setUTCHours(0, 0, 0, 0);
+	const currentRunedate = utilityRunedate(date.getTime());
 	return [slot1(currentRunedate)!, slot2(currentRunedate)!, slot3(currentRunedate)!];
 }
