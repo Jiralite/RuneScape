@@ -380,6 +380,7 @@ export enum QuestStatus {
  * Represents the title of a quest.
  */
 export enum QuestTitle {
+	AChristmasReunion = "A Christmas Reunion",
 	AClockworkSyringe = "A Clockwork Syringe",
 	AFairyTaleIGrowingPains = "A Fairy Tale I - Growing Pains",
 	AFairyTaleIICureaQueen = "A Fairy Tale II - Cure a Queen",
