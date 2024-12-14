@@ -404,6 +404,7 @@ export enum QuestTitle {
 	BattleOfForinthry = "Battle of Forinthry",
 	BattleOfTheMonolith = "Battle of the Monolith",
 	BeneathCursedTides = "Beneath Cursed Tides",
+	BeneathScabarasSands = "Beneath Scabaras' Sands",
 	BenedictsWorldTour = "Benedict's World Tour (miniquest)",
 	BetweenARock = "Between a Rock...",
 	BigChompyBirdHunting = "Big Chompy Bird Hunting",
