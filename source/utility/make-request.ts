@@ -1,4 +1,4 @@
-export function makeRequest(url: string, abortSignal?: AbortSignal) {
+export function makeRequest(url: string, abortSignal: AbortSignal | undefined) {
 	const options: RequestInit = {};
 
 	if (abortSignal) {

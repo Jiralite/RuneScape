@@ -483,17 +483,17 @@ export interface GroupIronmanHiScoreOptions {
 	/**
 	 * The size of the page.
 	 */
-	size?: number;
+	size?: number | undefined;
 	/**
 	 * The page number.
 	 *
 	 * @remarks The page number is 0-indexed.
 	 */
-	page?: number;
+	page?: number | undefined;
 	/**
 	 * Whether the group is competitive.
 	 */
-	isCompetitive?: boolean;
+	isCompetitive?: boolean | undefined;
 	/**
 	 * The abort signal for the fetch.
 	 */
