@@ -15,13 +15,13 @@ export interface AvatarOptions {
 	 *
 	 * @remarks 100 is the maximum number the width abides by.
 	 */
-	width?: number;
+	width?: number | undefined;
 	/**
 	 * The desired height.
 	 *
 	 * @remarks 100 is the maximum number the height abides by.
 	 */
-	height?: number;
+	height?: number | undefined;
 }
 
 /**
@@ -33,11 +33,11 @@ export interface AvatarOptions {
 export function avatar({ name, width, height }: AvatarOptions): string {
 	const urlSearchParams = new URLSearchParams();
 
-	if (typeof width === "number") {
+	if (width !== undefined) {
 		urlSearchParams.set("w", String(width));
 	}
 
-	if (typeof height === "number") {
+	if (height !== undefined) {
 		urlSearchParams.set("h", String(height));
 	}
 
