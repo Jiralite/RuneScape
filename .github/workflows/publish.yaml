@@ -5,7 +5,8 @@ on:
 permissions:
   id-token: write
 jobs:
-  publish:
+  npm:
+    name: npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,3 +28,21 @@ jobs:
         run: pnpm publish --provenance --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+  jsr:
+    name: JSR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.14.2
+          run_install: |
+            - args: [--frozen-lockfile]
+
+      - name: Publish package
+        run: pnpm dlx jsr publish

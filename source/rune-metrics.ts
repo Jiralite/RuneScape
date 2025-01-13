@@ -227,7 +227,7 @@ export interface ProfileOptions {
 	 *
 	 * @remarks 20 is the maximum number this limit abides by.
 	 */
-	activities?: number;
+	activities?: number | undefined;
 	/**
 	 * The abort signal for the fetch.
 	 */
@@ -246,7 +246,7 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("user", name);
 
-	if (typeof activities === "number") {
+	if (activities !== undefined) {
 		urlSearchParams.set("activities", String(activities));
 	}
 

@@ -6,7 +6,7 @@
  * @returns Whether a Wilderness Warbands camp is set up.
  * @see {@link https://runescape.wiki/w/Wilderness_Warbands}
  */
-export function wildernessWarbands(timestamp: number) {
+export function wildernessWarbands(timestamp: number): boolean {
 	const date = new Date(timestamp);
 	const start = new Date(date);
 	start.setUTCDate(date.getUTCDate() - ((date.getUTCDay() + 6) % 7));

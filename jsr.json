@@ -1,5 +1,9 @@
 {
+	"$schema": "https://jsr.io/schema/config-file.v1.json",
 	"name": "@runescape/runescape",
-	"version": "0.9.0",
-	"exports": "./source/index.ts"
+	"version": "0.10.5",
+	"exports": "./source/index.ts",
+	"publish": {
+		"include": ["source/", "README.md"]
+	}
 }
