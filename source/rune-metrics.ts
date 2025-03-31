@@ -582,6 +582,7 @@ export enum QuestTitle {
 	OneSmallFavour = "One Small Favour",
 	OsseousRex = "Osseous Rex",
 	OurManInTheNorth = "Our Man in the North",
+	PharaohsFolly = "Pharaoh's Folly",
 	PerilsOfIceMountain = "Perils of Ice Mountain",
 	PhiteClub = "'Phite Club",
 	PiecesOfHate = "Pieces of Hate",
