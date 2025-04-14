@@ -469,6 +469,7 @@ export enum QuestTitle {
 	DragonSlayer = "Dragon Slayer",
 	DreamMentor = "Dream Mentor",
 	DruidicRitual = "Druidic Ritual",
+	DuckQuest = "Duck Quest",
 	DwarfCannon = "Dwarf Cannon",
 	EadgarsRuse = "Eadgar's Ruse",
 	EaglesPeak = "Eagles' Peak",
