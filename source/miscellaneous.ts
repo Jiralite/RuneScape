@@ -108,7 +108,7 @@ export interface PlayerPageOptions {
  */
 export function playerPage({ name }: PlayerPageOptions): { [key in PlayerPage]: string } {
 	const urlSearchParams = new URLSearchParams();
-	urlSearchParams.set("user1", transformName(name, "%20"));
+	urlSearchParams.set("user1", name);
 
 	return {
 		[PlayerPage.RuneScape]: `https://secure.runescape.com/m=hiscore/compare?${urlSearchParams}`,
