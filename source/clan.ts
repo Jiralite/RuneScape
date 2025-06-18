@@ -59,6 +59,9 @@ export interface ClanMember {
 	kills: number;
 }
 
+/**
+ * Options to provide for fetching clan members.
+ */
 export interface FetchClanMembersOptions {
 	/**
 	 * The name of the clan.
