@@ -48,7 +48,7 @@ export interface ClanMember {
 	 */
 	clanRank: ClanRank;
 	/**
-	 * The total amount of experienced gained by the clan member during their time in the clan.
+	 * The total amount of experience gained by the clan member during their time in the clan.
 	 */
 	totalXP: number;
 	/**
