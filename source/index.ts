@@ -1,5 +1,11 @@
 // biome-ignore lint/performance/noBarrelFile: This is fine.
 export { ErrorCode, RuneScapeAPIError, RuneScapeError } from "./utility/error.js";
+export {
+	type ClanMember,
+	ClanRank,
+	type FetchClanMembersOptions,
+	fetchClanMembers,
+} from "./clan.js";
 export { guthixianCache } from "./guthixian-cache.js";
 export {
 	Skill,
