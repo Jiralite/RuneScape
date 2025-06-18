@@ -22,6 +22,7 @@
 		"update": "pnpm update --interactive --latest && pre-commit autoupdate"
 	},
 	"dependencies": {
+		"csv-parse": "^5.6.0",
 		"dayjs": "^1.11.10"
 	},
 	"devDependencies": {
