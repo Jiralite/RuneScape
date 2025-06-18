@@ -74,10 +74,10 @@ export interface FetchClanMembersOptions {
 }
 
 /**
- * Returns the Group Ironman HiScore data.
+ * Returns the clan members of a clan.
  *
  * @param options - The options to provide
- * @returns The Group Ironman HiScore data.
+ * @returns Clan members data.
  */
 export async function fetchClanMembers({
 	clanName,
