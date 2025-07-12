@@ -473,6 +473,7 @@ export enum QuestTitle {
 	DwarfCannon = "Dwarf Cannon",
 	EadgarsRuse = "Eadgar's Ruse",
 	EaglesPeak = "Eagles' Peak",
+	EclipseOfTheHeart = "Eclipse of the Heart",
 	ElementalWorkshopI = "Elemental Workshop I",
 	ElementalWorkshopII = "Elemental Workshop II",
 	ElementalWorkshopIII = "Elemental Workshop III",
