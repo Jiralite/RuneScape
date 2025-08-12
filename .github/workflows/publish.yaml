@@ -9,7 +9,7 @@ jobs:
     name: npm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install Node.js 22
         uses: actions/setup-node@v4
@@ -35,7 +35,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install dependencies
         uses: pnpm/action-setup@v4
