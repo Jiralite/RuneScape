@@ -25,17 +25,18 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Install Node.js 22
-        uses: actions/setup-node@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.14.0
+
+      - name: Install Node.js
+        uses: actions/setup-node@v5
         with:
           node-version: 22
 
       - name: Install dependencies
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.1
-          run_install: |
-            - args: [--frozen-lockfile]
+        run: pnpm install
 
       - name: Validate TypeScript
         run: pnpm run test
