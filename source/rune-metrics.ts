@@ -445,7 +445,7 @@ export enum QuestTitle {
 	DemonSlayer = "Demon Slayer",
 	DesertSlayerDungeon = "Desert Slayer Dungeon (miniquest)",
 	DesertTreasure = "Desert Treasure",
-	DesperateCreatures = "Desperate Ceratures",
+	DesperateCreatures = "Desperate Creatures",
 	DesperateMeasures = "Desperate Measures",
 	DesperateTimes = "Desperate Times",
 	DeviousMinds = "Devious Minds",
