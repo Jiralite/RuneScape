@@ -641,6 +641,7 @@ export enum QuestTitle {
 	SpiritOfSummer = "Spirit of Summer",
 	SpiritsOfTheElid = "Spirits of the Elid",
 	SpiritualEnlightenment = "Spiritual Enlightenment (miniquest)",
+	StellarBorn = "Stellar Born",
 	StolenHearts = "Stolen Hearts",
 	Succession = "Succession",
 	SummersEnd = "Summer's End",
