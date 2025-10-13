@@ -513,6 +513,7 @@ export enum QuestTitle {
 	GreatEggSpectations = "Great Egg-spectations",
 	GrimTales = "Grim Tales",
 	GunnarsGround = "Gunnar's Ground",
+	GuysAndDolls = "Guys and Dolls",
 	Harbinger = "Harbinger (miniquest)",
 	HauntedMine = "Haunted Mine",
 	HazeelCult = "Hazeel Cult",
