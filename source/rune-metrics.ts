@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
-import { ErrorCode, RuneScapeAPIError, RuneScapeError } from "./utility/error.js";
+import { RuneScapeAPIError, RuneScapeError, RuneScapeErrorCode } from "./utility/error.js";
 import { makeRequest } from "./utility/make-request.js";
 
 interface RawProfile {
@@ -260,20 +260,20 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
 	const body = (await response.json()) as ProfileError | RawProfile;
 
 	if ("error" in body) {
-		let code: (typeof ErrorCode)[keyof typeof ErrorCode];
+		let code: RuneScapeErrorCode;
 
 		switch (body.error) {
 			case ProfileErrorType.NotAMember:
-				code = ErrorCode.ProfileNotAMember;
+				code = RuneScapeErrorCode.ProfileNotAMember;
 				break;
 			case ProfileErrorType.ProfilePrivate:
-				code = ErrorCode.ProfilePrivate;
+				code = RuneScapeErrorCode.ProfilePrivate;
 				break;
 			case ProfileErrorType.NoProfile:
-				code = ErrorCode.ProfileNone;
+				code = RuneScapeErrorCode.ProfileNone;
 				break;
 			default:
-				code = ErrorCode.ProfileError;
+				code = RuneScapeErrorCode.ProfileError;
 		}
 
 		throw new RuneScapeError(code, body.error, url);

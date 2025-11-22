@@ -1,3 +1,4 @@
+// biome-ignore lint/performance/noBarrelFile: This is fine.
 export {
 	type ClanMember,
 	ClanRank,
@@ -50,6 +51,6 @@ export {
 	SkillId,
 } from "./rune-metrics.js";
 export { Item, stock } from "./travelling-merchant.js";
-export { ErrorCode, RuneScapeAPIError, RuneScapeError } from "./utility/error.js";
+export { RuneScapeAPIError, RuneScapeError, RuneScapeErrorCode } from "./utility/error.js";
 export { WildernessFlashEvent, wildernessFlashEvent } from "./wilderness-flash-event.js";
 export { wildernessWarbands } from "./wilderness-warbands.js";
