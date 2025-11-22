@@ -36,6 +36,7 @@ const Messages = {
  * An error returned from the API.
  */
 export class RuneScapeAPIError extends Error {
+	public override readonly name = this.constructor.name;
 	/**
 	 * The status code of the error.
 	 */
