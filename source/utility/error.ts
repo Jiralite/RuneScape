@@ -50,16 +50,16 @@ export class RuneScapeAPIError extends Error {
 	/**
 	 * Constructs an error for the API.
 	 *
-	 * @param name - The name of this error
+	 * @param message - The name of this error
 	 * @param statusCode - The status code of the error
 	 * @param url - The fully quallified URL of the request
 	 */
 	public constructor(
-		name: Error["name"],
+		message: Error["message"],
 		statusCode: RuneScapeAPIError["statusCode"],
 		url: RuneScapeAPIError["url"],
 	) {
-		super(name);
+		super(message);
 		this.statusCode = statusCode;
 		this.url = url;
 	}
