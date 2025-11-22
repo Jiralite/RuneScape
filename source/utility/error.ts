@@ -1,25 +1,24 @@
 /**
  * Error codes that can be used to track a specific error.
  */
-export const ErrorCode = {
-	// Profile.
+export enum RuneScapeErrorCode {
 	/**
 	 * The generic error when fetching a player's profile data as viewed on RuneMetrics.
 	 */
-	ProfileError: "ProfileError",
+	ProfileError = 0,
 	/**
 	 * This seems to be returned on banned players.
 	 */
-	ProfileNotAMember: "ProfileNotAMember",
+	ProfileNotAMember = 1,
 	/**
 	 * The RuneMetrics profile of this player is not public.
 	 */
-	ProfilePrivate: "ProfilePrivate",
+	ProfilePrivate = 2,
 	/**
 	 * It is supposable this player does not exist.
 	 */
-	ProfileNone: "ProfileNone",
-} as const;
+	ProfileNone = 3,
+}
 
 /**
  * Messages that are associated with an error code.
@@ -27,28 +26,17 @@ export const ErrorCode = {
  * @internal
  */
 const Messages = {
-	/**
-	 * The generic error when fetching a player's profile data as viewed on RuneMetrics.
-	 */
-	[ErrorCode.ProfileError]: "Failed to fetch the RuneMetrics profile of this player.",
-	/**
-	 * This seems to be returned on banned players.
-	 */
-	[ErrorCode.ProfileNotAMember]: "This player is banned.",
-	/**
-	 * The RuneMetrics profile of this player is not public.
-	 */
-	[ErrorCode.ProfilePrivate]: "This player's RuneMetrics profile is not public.",
-	/**
-	 * It is supposable this player does not exist.
-	 */
-	[ErrorCode.ProfileNone]: "Unknown player.",
-} as const;
+	[RuneScapeErrorCode.ProfileError]: "Failed to fetch the RuneMetrics profile of this player.",
+	[RuneScapeErrorCode.ProfileNotAMember]: "This player is banned.",
+	[RuneScapeErrorCode.ProfilePrivate]: "This player's RuneMetrics profile is not public.",
+	[RuneScapeErrorCode.ProfileNone]: "Unknown player.",
+} as const satisfies Readonly<Record<RuneScapeErrorCode, string>>;
 
 /**
  * An error returned from the API.
  */
 export class RuneScapeAPIError extends Error {
+	public override readonly name = this.constructor.name;
 	/**
 	 * The status code of the error.
 	 */
@@ -62,16 +50,16 @@ export class RuneScapeAPIError extends Error {
 	/**
 	 * Constructs an error for the API.
 	 *
-	 * @param name - The name of this error
+	 * @param message - The name of this error
 	 * @param statusCode - The status code of the error
 	 * @param url - The fully quallified URL of the request
 	 */
 	public constructor(
-		name: Error["name"],
+		message: Error["message"],
 		statusCode: RuneScapeAPIError["statusCode"],
 		url: RuneScapeAPIError["url"],
 	) {
-		super(name);
+		super(message);
 		this.statusCode = statusCode;
 		this.url = url;
 	}
@@ -84,7 +72,7 @@ export class RuneScapeError extends Error {
 	/**
 	 * The defined error code.
 	 */
-	public readonly code: (typeof ErrorCode)[keyof typeof ErrorCode];
+	public readonly code: RuneScapeErrorCode;
 
 	/**
 	 * The raw error that yielded this error.
@@ -115,6 +103,6 @@ export class RuneScapeError extends Error {
 	}
 
 	public override get name(): string {
-		return `${super.name} [${this.rawCode}]`;
+		return `${this.constructor.name} [${this.rawCode}]`;
 	}
 }
