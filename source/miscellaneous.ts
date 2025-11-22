@@ -47,6 +47,15 @@ export function avatar({ name, width, height }: AvatarOptions): string {
 }
 
 /**
+ * Returns a clan's motif.
+ *
+ * @param name - The name of a clan
+ */
+export function clanMotif(name: string): string {
+	return `https://secure.runescape.com/m=avatar-rs/${transformName(name, "%20")}/clanmotif.png`;
+}
+
+/**
  * Represents what may provide a clan's home page.
  */
 export enum ClanPage {

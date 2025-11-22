@@ -25,6 +25,7 @@ export {
 	type ClanPageOptions,
 	type CreatedAccounts,
 	type CreatedAccountsOptions,
+	clanMotif,
 	clanPage,
 	createdAccounts,
 	type PlayerCountOptions,
