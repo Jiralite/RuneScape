@@ -102,6 +102,6 @@ export class RuneScapeError extends Error {
 	}
 
 	public override get name(): string {
-		return `${super.name} [${this.rawCode}]`;
+		return `${this.constructor.name} [${this.rawCode}]`;
 	}
 }
