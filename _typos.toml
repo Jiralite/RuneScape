@@ -3,3 +3,6 @@ HerosWelcome = "HerosWelcome"
 
 [default.extend-words]
 Ket = "Ket"
+
+[files]
+extend-exclude = ["biome.json"]

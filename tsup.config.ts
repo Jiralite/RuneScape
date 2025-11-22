@@ -1,6 +1,5 @@
 import { defineConfig } from "tsup";
 
-// biome-ignore lint/style/noDefaultExport: tsup documents this.
 export default defineConfig({
 	entry: ["source/index.ts"],
 	platform: "node",

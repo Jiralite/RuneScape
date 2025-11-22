@@ -1,7 +1,17 @@
 {
 	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on",
+				"useSortedAttributes": "on",
+				"useSortedProperties": "on"
+			}
+		}
+	},
 	"formatter": {
-		"lineWidth": 100
+		"lineWidth": 100,
+		"formatWithErrors": true
 	},
 	"javascript": {
 		"formatter": {
@@ -10,15 +20,61 @@
 	},
 	"linter": {
 		"rules": {
-			"all": true,
+			"complexity": {
+				"noForEach": "on",
+				"noThisInStatic": "off",
+				"noVoid": "off",
+				"useSimplifiedLogicExpression": "on"
+			},
+			"correctness": {
+				"noUndeclaredDependencies": "on",
+				"useJsxKeyInIterable": "on"
+			},
+			"nursery": {
+				"noDeprecatedImports": "on",
+				"noFloatingPromises": "on"
+			},
+			"performance": {
+				"noBarrelFile": "on",
+				"noDelete": "on"
+			},
 			"style": {
+				"noInferrableTypes": "error",
+				"noNegationElse": "error",
 				"noNonNullAssertion": "off",
-				"useNamingConvention": "off"
+				"noParameterAssign": "error",
+				"noUnusedTemplateLiteral": "error",
+				"noUselessElse": "error",
+				"noYodaExpression": "error",
+				"useAsConstAssertion": "error",
+				"useBlockStatements": "error",
+				"useCollapsedElseIf": "error",
+				"useCollapsedIf": "error",
+				"useConsistentArrayType": "error",
+				"useConsistentCurlyBraces": "error",
+				"useConsistentMemberAccessibility": {
+					"level": "error",
+					"options": {
+						"accessibility": "explicit"
+					}
+				},
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useExplicitLengthCheck": "error",
+				"useForOf": "error",
+				"useFragmentSyntax": "error",
+				"useNamingConvention": "off",
+				"useNumberNamespace": "error",
+				"useSelfClosingElements": "error",
+				"useShorthandAssign": "error",
+				"useSingleVarDeclarator": "error"
+			},
+			"suspicious": {
+				"noAlert": "error",
+				"noConstantBinaryExpressions": "on",
+				"noConstEnum": "off"
 			}
 		}
-	},
-	"organizeImports": {
-		"enabled": true
 	},
 	"vcs": {
 		"clientKind": "git",
