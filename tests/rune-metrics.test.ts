@@ -103,8 +103,7 @@ describe("standardiseProfileActivityLog", () => {
 	describe("Full stop handling.", () => {
 		describe("Preserving existing full stops.", () => {
 			test("Preserves full stop in XP details.", () => {
-				const input =
-					"I now have at least 124000000 experience points in the Divination skill.";
+				const input = "I now have at least 124000000 experience points in the Divination skill.";
 				const expected =
 					"I now have at least 124,000,000 experience points in the Divination skill.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
@@ -291,7 +290,8 @@ describe("standardiseProfileActivityLog", () => {
 			});
 
 			test("Preserves full stop in easy treasure trail details.", () => {
-				const input = "I have completed an easy treasure trail. I got some flared trousers out of it.";
+				const input =
+					"I have completed an easy treasure trail. I got some flared trousers out of it.";
 				const expected =
 					"I have completed an easy treasure trail. I got some flared trousers out of it.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
@@ -299,18 +299,21 @@ describe("standardiseProfileActivityLog", () => {
 
 			test("Preserves full stop in treasure trail with wizard robe.", () => {
 				const input = "I have completed an easy treasure trail. I got a wizard robe (g) out of it.";
-				const expected = "I have completed an easy treasure trail. I got a wizard robe (g) out of it.";
+				const expected =
+					"I have completed an easy treasure trail. I got a wizard robe (g) out of it.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
 			});
 
 			test("Preserves full stop in treasure trail with wizard hat.", () => {
 				const input = "I have completed an easy treasure trail. I got a wizard hat (g) out of it.";
-				const expected = "I have completed an easy treasure trail. I got a wizard hat (g) out of it.";
+				const expected =
+					"I have completed an easy treasure trail. I got a wizard hat (g) out of it.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
 			});
 
 			test("Preserves full stop in medium treasure trail details.", () => {
-				const input = "I have completed a medium treasure trail. I got some ranger boots out of it.";
+				const input =
+					"I have completed a medium treasure trail. I got some ranger boots out of it.";
 				const expected =
 					"I have completed a medium treasure trail. I got some ranger boots out of it.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
@@ -594,10 +597,8 @@ describe("standardiseProfileActivityLog", () => {
 
 	describe("Article lowercasing.", () => {
 		test("Lowercases 'A' after double spaces.", () => {
-			const input =
-				"I killed  A Slayer Master corrupted by Amascut: Nakatra, Devourer Eternal.";
-			const expected =
-				"I killed a Slayer Master corrupted by Amascut: Nakatra, Devourer Eternal.";
+			const input = "I killed  A Slayer Master corrupted by Amascut: Nakatra, Devourer Eternal.";
+			const expected = "I killed a Slayer Master corrupted by Amascut: Nakatra, Devourer Eternal.";
 			expect(standardiseProfileActivityLog(input)).toBe(expected);
 		});
 
