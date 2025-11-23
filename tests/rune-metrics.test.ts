@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { standardiseProfileActivityLog } from "./rune-metrics.js";
+import { standardiseProfileActivityLog } from "../source/rune-metrics.js";
 
 describe("standardiseProfileActivityLog", () => {
 	test("Formats XP number with commas and lowercase.", () => {
