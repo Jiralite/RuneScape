@@ -92,6 +92,12 @@ describe("standardiseProfileActivityLog", () => {
 			const expected = "54,000,000 xp in Hunter.";
 			expect(standardiseProfileActivityLog(input)).toBe(expected);
 		});
+
+		test("Formats 100M XP in Prayer skill.", () => {
+			const input = "100000000XP in Prayer";
+			const expected = "100,000,000 xp in Prayer.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
 	});
 
 	describe("Full stop handling.", () => {
@@ -100,7 +106,7 @@ describe("standardiseProfileActivityLog", () => {
 				const input =
 					"I now have at least 124000000 experience points in the Divination skill.";
 				const expected =
-					"I now have at least 124000000 experience points in the Divination skill.";
+					"I now have at least 124,000,000 experience points in the Divination skill.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
 			});
 
@@ -315,6 +321,42 @@ describe("standardiseProfileActivityLog", () => {
 				const expected = "I have completed a medium treasure trail. I got a cat mask out of it.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
 			});
+
+			test("Preserves full stop in Clan Citadel capping details.", () => {
+				const input = "I have capped at my Clan Citadel this week.";
+				const expected = "I have capped at my Clan Citadel this week.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Preserves full stop in Clan Citadel visiting details.", () => {
+				const input = "I have visited my Clan Citadel this week.";
+				const expected = "I have visited my Clan Citadel this week.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Preserves full stop in Clan Fealty details.", () => {
+				const input = "I have maintained Clan Fealty.";
+				const expected = "I have maintained Clan Fealty.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Preserves full stop in Chaos Elemental kills.", () => {
+				const input = "I killed 4 cHaOs EleMeNTalS.";
+				const expected = "I killed 4 cHaOs EleMeNTalS.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Preserves full stop in Araxxi kills.", () => {
+				const input = "I killed 2 Araxxi.";
+				const expected = "I killed 2 Araxxi.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Preserves full stop in Prayer XP details.", () => {
+				const input = "I now have at least 100000000 experience points in the Prayer skill.";
+				const expected = "I now have at least 100,000,000 experience points in the Prayer skill.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
 		});
 
 		describe("Adding missing full stops.", () => {
@@ -413,6 +455,24 @@ describe("standardiseProfileActivityLog", () => {
 				const expected = "Medium treasure trail completed.";
 				expect(standardiseProfileActivityLog(input)).toBe(expected);
 			});
+
+			test("Adds full stop to Clan Citadel capping.", () => {
+				const input = "Capped at my Clan Citadel";
+				const expected = "Capped at my Clan Citadel.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Adds full stop to Clan Citadel visiting.", () => {
+				const input = "Visited my Clan Citadel";
+				const expected = "Visited my Clan Citadel.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
+
+			test("Adds full stop to Clan Fealty.", () => {
+				const input = "Maintained Clan Fealty 3";
+				const expected = "Maintained Clan Fealty 3.";
+				expect(standardiseProfileActivityLog(input)).toBe(expected);
+			});
 		});
 	});
 
@@ -462,6 +522,72 @@ describe("standardiseProfileActivityLog", () => {
 		test("Removes double spaces in goddess kill.", () => {
 			const input = "I killed  the goddess of destruction.";
 			const expected = "I killed the goddess of destruction.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Zemouregal and Vorkath kill.", () => {
+			const input = "I killed  The Mahjarrat Zemouregal and the resurrected dragon Vorkath.";
+			const expected = "I killed The Mahjarrat Zemouregal and the resurrected dragon Vorkath.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Croesus kill.", () => {
+			const input = "I killed  Croesus.";
+			const expected = "I killed Croesus.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Orikalka kill.", () => {
+			const input = "I killed  Orikalka.";
+			const expected = "I killed Orikalka.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Pthentraken kill.", () => {
+			const input = "I killed  Pthentraken.";
+			const expected = "I killed Pthentraken.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Rathis kill.", () => {
+			const input = "I killed  Rathis.";
+			const expected = "I killed Rathis.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Raksha kill.", () => {
+			const input = "I killed  Raksha, the Shadow Colossus.";
+			const expected = "I killed Raksha, the Shadow Colossus.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Magister kill.", () => {
+			const input = "I killed  the Magister, the unkillable holder of the Crossing.";
+			const expected = "I killed the Magister, the unkillable holder of the Crossing.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Telos kill.", () => {
+			const input = "I killed  Telos, the Warden.";
+			const expected = "I killed Telos, the Warden.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Gregorovic kill.", () => {
+			const input = "I killed  Gregorovic, a general of Sliske.";
+			const expected = "I killed Gregorovic, a general of Sliske.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Vindicta and Gorvek kill.", () => {
+			const input = "I killed  Vindicta and her dragon, Gorvek.";
+			const expected = "I killed Vindicta and her dragon, Gorvek.";
+			expect(standardiseProfileActivityLog(input)).toBe(expected);
+		});
+
+		test("Removes double spaces in Wight of the Shadow Realm encounter.", () => {
+			const input = "I defeated  a Wight of the Shadow Realm on my way into Um.";
+			const expected = "I defeated a Wight of the Shadow Realm on my way into Um.";
 			expect(standardiseProfileActivityLog(input)).toBe(expected);
 		});
 	});

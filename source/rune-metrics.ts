@@ -344,8 +344,14 @@ export function standardiseProfileActivityLog(details: string): string {
 
 	// Format experience numbers with commas and lowercase (e.g. "124000000XP" to "124,000,000 xp").
 	result = result.replace(/(\d+)XP/gi, (_match, number) => {
-		const formattedNumber = Number(number).toLocaleString("en-US");
+		const formattedNumber = Number(number).toLocaleString("en-GB");
 		return `${formattedNumber} xp`;
+	});
+
+	// Format experience numbers before "experience points" (e.g. "100000000 experience points" to "100,000,000 experience points").
+	result = result.replace(/(\d+)\s+experience points/gi, (_match, number) => {
+		const formattedNumber = Number(number).toLocaleString("en-GB");
+		return `${formattedNumber} experience points`;
 	});
 
 	// Check if the string already ends with sentence-ending punctuation.
