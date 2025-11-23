@@ -324,14 +324,14 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
 }
 
 /**
- * Standardises profile activity details to ensure consistent formatting.
+ * Standardises {@link ProfileActivity.details} or {@link ProfileActivity.text} to ensure consistent formatting.
  *
- * @param log - The {@link ProfileActivity.details} or {@link ProfileActivity.text} to standardise
  * @remarks
  * - Removes extra spaces between words
  * - Lowercases articles (A, An) that appear after double spaces
  * - Formats experience numbers with commas and lowercase (e.g. "124000000XP" to "124,000,000 xp")
  * - Ensures the string ends with a full stop if it doesn't already end with punctuation (., !, ?)
+ * @param log - The {@link ProfileActivity.details} or {@link ProfileActivity.text} to standardise
  */
 export function standardiseProfileActivityLog(details: string): string {
 	// Lowercase articles that appear after double spaces before normalising.
