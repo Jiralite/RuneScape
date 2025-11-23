@@ -18,6 +18,7 @@ export {
 	Skill,
 } from "./hi-scores.js";
 export { Jewel, jewel } from "./jewels.js";
+export { Minigame, minigameSpotlight } from "./minigame-spotlight.js";
 export {
 	type AvatarOptions,
 	avatar,
