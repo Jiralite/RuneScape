@@ -333,9 +333,9 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
  * - Ensures the string ends with a full stop if it doesn't already end with punctuation (., !, ?)
  * @param log - The {@link ProfileActivity.details} or {@link ProfileActivity.text} to standardise
  */
-export function standardiseProfileActivityLog(details: string): string {
+export function standardiseProfileActivityLog(log: string): string {
 	// Lowercase articles that appear after double spaces before normalising.
-	let result = details.replace(/\s{2,}(A|An)\s/g, (_match, article) => {
+	let result = log.replace(/\s{2,}(A|An)\s/g, (_match, article) => {
 		return ` ${article.toLowerCase()} `;
 	});
 
