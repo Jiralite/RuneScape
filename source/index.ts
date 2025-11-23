@@ -50,6 +50,7 @@ export {
 	QuestTitle,
 	questDetails,
 	SkillId,
+	standardiseProfileActivityLog,
 } from "./rune-metrics.js";
 export { Item, stock } from "./travelling-merchant.js";
 export { RuneScapeAPIError, RuneScapeError, RuneScapeErrorCode } from "./utility/error.js";

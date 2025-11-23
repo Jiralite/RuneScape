@@ -323,6 +323,41 @@ export async function profile({ name, activities, abortSignal }: ProfileOptions)
 	};
 }
 
+/**
+ * Standardises profile activity details to ensure consistent formatting.
+ *
+ * @param log - The {@link ProfileActivity.details} or {@link ProfileActivity.text} to standardise
+ * @remarks
+ * - Removes extra spaces between words
+ * - Lowercases articles (A, An) that appear after double spaces
+ * - Formats experience numbers with commas and lowercase (e.g. "124000000XP" to "124,000,000 xp")
+ * - Ensures the string ends with a full stop if it doesn't already end with punctuation (., !, ?)
+ */
+export function standardiseProfileActivityLog(details: string): string {
+	// Lowercase articles that appear after double spaces before normalising.
+	let result = details.replace(/\s{2,}(A|An)\s/g, (_match, article) => {
+		return ` ${article.toLowerCase()} `;
+	});
+
+	// Normalise remaining spaces.
+	result = result.replace(/\s+/g, " ");
+
+	// Format experience numbers with commas and lowercase (e.g. "124000000XP" to "124,000,000 xp").
+	result = result.replace(/(\d+)XP/gi, (_match, number) => {
+		const formattedNumber = Number(number).toLocaleString("en-US");
+		return `${formattedNumber} xp`;
+	});
+
+	// Check if the string already ends with sentence-ending punctuation.
+	const endsWithPunctuation = /[.!?]$/.test(result);
+
+	if (endsWithPunctuation) {
+		return result;
+	}
+
+	return `${result}.`;
+}
+
 interface RawQuestDetail {
 	loggedIn: `${boolean}`;
 	quests: Quest[];
