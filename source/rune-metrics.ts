@@ -186,7 +186,7 @@ export interface Profile {
 	/**
 	 * The name of the player.
 	 *
-	 * @remarks This returns the corrects the capitalisation of the player's name.
+	 * @remarks This returns the correct capitalisation of the player's name.
 	 */
 	name: RawProfile["name"];
 	/**
