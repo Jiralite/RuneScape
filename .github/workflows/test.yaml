@@ -19,8 +19,8 @@ jobs:
 
       - name: Run Biome
         run: biome ci --reporter=github
-  typescript:
-    name: TypeScript
+  testing:
+    name: Testing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -38,5 +38,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Validate TypeScript
+      - name: Run tests
         run: pnpm run test

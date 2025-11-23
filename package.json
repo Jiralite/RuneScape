@@ -20,8 +20,8 @@
 		"distribution"
 	],
 	"scripts": {
+		"test": "tsc --noEmit && vitest run",
 		"build": "tsup",
-		"test": "tsc --noEmit",
 		"lint": "biome check",
 		"format": "biome check --write",
 		"prepack": "pnpm run build && pnpm run lint",
@@ -35,7 +35,8 @@
 		"@biomejs/biome": "^2.3.7",
 		"@types/node": "^24.10.1",
 		"tsup": "^8.5.1",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.13"
 	},
 	"devEngines": {
 		"runtime": {

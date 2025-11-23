@@ -5,4 +5,4 @@ HerosWelcome = "HerosWelcome"
 Ket = "Ket"
 
 [files]
-extend-exclude = ["biome.json"]
+extend-exclude = ["biome.json", "tests"]
