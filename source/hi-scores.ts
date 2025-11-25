@@ -24,6 +24,7 @@ export enum Skill {
 	Invention = "Invention",
 	Magic = "Magic",
 	Mining = "Mining",
+	Necromancy = "Necromancy",
 	Prayer = "Prayer",
 	Ranged = "Ranged",
 	Runecrafting = "Runecrafting",
@@ -177,6 +178,10 @@ export interface HiScore {
 	 * Archaeology skill data.
 	 */
 	archaeology: HiScoreSkill<Skill.Archaeology>;
+	/**
+	 * Necromancy skill data.
+	 */
+	necromancy: HiScoreSkill<Skill.Necromancy>;
 }
 
 /**
@@ -386,6 +391,12 @@ export async function hiScore({ name, abortSignal }: HiScoreOptions): Promise<Hi
 			rank: Number(dataLine[28]![0]),
 			level: Number(dataLine[28]![1]),
 			totalXP: Number(dataLine[28]![2]),
+		},
+		necromancy: {
+			name: Skill.Necromancy,
+			rank: Number(dataLine[29]![0]),
+			level: Number(dataLine[29]![1]),
+			totalXP: Number(dataLine[29]![2]),
 		},
 	};
 }
