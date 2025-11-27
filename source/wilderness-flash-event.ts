@@ -1,9 +1,28 @@
-const INITIAL_TIMESTAMP = Date.UTC(2_024, 1, 5, 12);
+const INITIAL_TIMESTAMP = Date.UTC(2_022, 9, 17, 11);
+
+// Stryke the Wyrm added: 5th February 2024 12:00.
+const CHANGE_TIMESTAMP = Date.UTC(2_024, 1, 5, 12);
 
 /**
- * The kind of Wilderness Flash Event.
+ * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events}
  */
 export enum WildernessFlashEvent {
+	/**
+	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Spider_Swarm}
+	 */
+	SpiderSwarm = "Spider Swarm",
+	/**
+	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Unnatural_Outcrop}
+	 */
+	UnnaturalOutcrop = "Unnatural Outcrop",
+	/**
+	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Demon_Stragglers}
+	 */
+	DemonStragglers = "Demon Stragglers",
+	/**
+	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Butterfly_Swarm}
+	 */
+	ButterflySwarm = "Butterfly Swarm",
 	/**
 	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#King_Black_Dragon_Rampage}
 	 */
@@ -41,38 +60,59 @@ export enum WildernessFlashEvent {
 	 */
 	EvilBloodwoodTree = "Evil Bloodwood Tree",
 	/**
-	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Spider_Swarm}
-	 */
-	SpiderSwarm = "Spider Swarm",
-	/**
-	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Unnatural_Outcrop}
-	 */
-	UnnaturalOutcrop = "Unnatural Outcrop",
-	/**
 	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Stryke_the_Wyrm}
 	 */
 	StrykeTheWyrm = "Stryke the Wyrm",
-	/**
-	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Demon_Stragglers}
-	 */
-	DemonStragglers = "Demon Stragglers",
-	/**
-	 * @see {@link https://runescape.wiki/w/Wilderness_Flash_Events#Butterfly_Swarm}
-	 */
-	ButterflySwarm = "Butterfly Swarm",
 }
 
-const WILDERNESS_FLASH_EVENTS = Object.values(WildernessFlashEvent);
-const WILDERNESS_FLASH_EVENTS_LENGTH = WILDERNESS_FLASH_EVENTS.length;
+// Original sequence from 17th October 2022.
+const ORIGINAL_SEQUENCE = [
+	WildernessFlashEvent.SpiderSwarm,
+	WildernessFlashEvent.UnnaturalOutcrop,
+	WildernessFlashEvent.DemonStragglers,
+	WildernessFlashEvent.ButterflySwarm,
+	WildernessFlashEvent.KingBlackDragonRampage,
+	WildernessFlashEvent.ForgottenSoldiers,
+	WildernessFlashEvent.SurprisingSeedlings,
+	WildernessFlashEvent.HellhoundPack,
+	WildernessFlashEvent.InfernalStar,
+	WildernessFlashEvent.LostSouls,
+	WildernessFlashEvent.RamokeeIncursion,
+	WildernessFlashEvent.DisplacedEnergy,
+	WildernessFlashEvent.EvilBloodwoodTree,
+] as const satisfies readonly WildernessFlashEvent[];
+
+// Modified sequence from 5th February 2024 12:00 (Stryke the Wyrm added).
+const MODIFIED_SEQUENCE = [
+	WildernessFlashEvent.ButterflySwarm,
+	WildernessFlashEvent.KingBlackDragonRampage,
+	WildernessFlashEvent.ForgottenSoldiers,
+	WildernessFlashEvent.SurprisingSeedlings,
+	WildernessFlashEvent.HellhoundPack,
+	WildernessFlashEvent.InfernalStar,
+	WildernessFlashEvent.LostSouls,
+	WildernessFlashEvent.RamokeeIncursion,
+	WildernessFlashEvent.DisplacedEnergy,
+	WildernessFlashEvent.EvilBloodwoodTree,
+	WildernessFlashEvent.SpiderSwarm,
+	WildernessFlashEvent.UnnaturalOutcrop,
+	WildernessFlashEvent.StrykeTheWyrm,
+	WildernessFlashEvent.DemonStragglers,
+] as const satisfies readonly WildernessFlashEvent[];
 
 /**
  * Returns the Wilderness Flash Event.
  *
- * @remarks The hour will be checked. Results may be inaccurate before 5th February 2024 12:00 as the sequence was modified.
+ * @remarks The sequence was modified on 5th February 2024 12:00 when Stryke the Wyrm was added and the order changed.
  * @param timestamp - A Unix timestamp.
- * @returns The Wilderness Flash Event.
+ * @throws {RangeError} If the timestamp is before 17th October 2022 11:00.
  */
 export function wildernessFlashEvent(timestamp: number): WildernessFlashEvent {
-	const hoursElapsed = Math.floor((timestamp - INITIAL_TIMESTAMP) / 1_000 / 60 / 60);
-	return WILDERNESS_FLASH_EVENTS[hoursElapsed % WILDERNESS_FLASH_EVENTS_LENGTH]!;
+	if (timestamp < INITIAL_TIMESTAMP) {
+		throw new RangeError("Wilderness Flash Events did not exist before 17th October 2022.");
+	}
+
+	const hoursElapsed = Math.floor((timestamp - INITIAL_TIMESTAMP) / 3_600_000);
+	const sequence = timestamp >= CHANGE_TIMESTAMP ? MODIFIED_SEQUENCE : ORIGINAL_SEQUENCE;
+	return sequence[hoursElapsed % sequence.length]!;
 }

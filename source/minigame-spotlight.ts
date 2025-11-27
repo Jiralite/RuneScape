@@ -1,6 +1,6 @@
 const INITIAL_TIMESTAMP = Date.UTC(2015, 4, 18);
 
-// Mobilising Armies removal: 3rd December 2018 14:00 UTC
+// Mobilising Armies removal: 3rd December 2018 14:00 UTC.
 const CHANGE_TIMESTAMP = Date.UTC(2018, 11, 3, 14);
 
 /**
