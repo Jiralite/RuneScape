@@ -201,10 +201,10 @@ describe("wildernessFlashEvent", () => {
 			const beforeEvent = wildernessFlashEvent(beforeChange);
 			const afterEvent = wildernessFlashEvent(afterChange);
 
-			// Events should be different (unless they happen to align).
-			expect(Object.values(WildernessFlashEvent)).toContain(beforeEvent);
-			expect(Object.values(WildernessFlashEvent)).toContain(afterEvent);
+			// Explicitly assert both sides of the boundary.
+			expect(beforeEvent).toBe(WildernessFlashEvent.RamokeeIncursion);
 			expect(afterEvent).toBe(WildernessFlashEvent.KingBlackDragonRampage);
+			expect(beforeEvent).not.toBe(afterEvent);
 		});
 	});
 });
