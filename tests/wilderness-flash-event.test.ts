@@ -5,7 +5,7 @@ describe("wildernessFlashEvent", () => {
 	describe("Error handling.", () => {
 		test("Throws RangeError for timestamps before 17th October 2022.", () => {
 			const timestamp = Date.UTC(2022, 9, 17, 10, 59, 59);
-			expect(() => wildernessFlashEvent(timestamp)).toThrowError();
+			expect(() => wildernessFlashEvent(timestamp)).toThrowError(RangeError);
 		});
 
 		test("Returns valid result at exactly the start time.", () => {

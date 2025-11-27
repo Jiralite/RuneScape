@@ -5,7 +5,7 @@ describe("minigameSpotlight", () => {
 	describe("Error handling.", () => {
 		test("Throws RangeError for timestamps before 18th May 2015.", () => {
 			const timestamp = Date.UTC(2015, 4, 17, 23, 59, 59);
-			expect(() => minigameSpotlight(timestamp)).toThrowError();
+			expect(() => minigameSpotlight(timestamp)).toThrowError(RangeError);
 		});
 
 		test("Returns valid result at exactly the start time.", () => {
