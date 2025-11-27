@@ -64,7 +64,7 @@ describe("wildernessFlashEvent", () => {
 		});
 
 		test("Returns King Black Dragon Rampage on 5th February 2024 12:00.", () => {
-			// Switches to modified sequence (index 0 = King Black Dragon Rampage).
+			// Switches to modified sequence.
 			const timestamp = Date.UTC(2024, 1, 5, 12, 0, 0);
 			expect(wildernessFlashEvent(timestamp)).toBe(WildernessFlashEvent.KingBlackDragonRampage);
 		});
