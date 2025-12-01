@@ -469,6 +469,7 @@ export enum QuestTitle {
 	CivilWarII = "Civil War II (miniquest)",
 	CivilWarIII = "Civil War III (miniquest)",
 	ClockTower = "Clock Tower",
+	ColdFront = "Cold Front",
 	ColdWar = "Cold War",
 	Contact = "Contact!",
 	CooksAssistant = "Cook's Assistant",
