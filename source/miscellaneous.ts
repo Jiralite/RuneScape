@@ -47,48 +47,6 @@ export function avatar({ name, width, height }: AvatarOptions): string {
 }
 
 /**
- * Returns a clan's motif.
- *
- * @param name - The name of a clan
- */
-export function clanMotif(name: string): string {
-	return `https://secure.runescape.com/m=avatar-rs/${transformName(name, "%20")}/clanmotif.png`;
-}
-
-/**
- * Represents what may provide a clan's home page.
- */
-export enum ClanPage {
-	RuneInfo = "RuneInfo",
-	RunePixels = "Runepixels",
-	RuneScape = "RuneScape",
-}
-
-/**
- * Represents the options to provide for retrieving clan home pages.
- */
-export interface ClanPageOptions {
-	/**
-	 * The clan.
-	 */
-	clan: string;
-}
-
-/**
- * Retrieve a clan's home pages.
- *
- * @param options - The options to provide
- * @returns An object containing sources to their links.
- */
-export function clanPage({ clan }: ClanPageOptions): { [key in ClanPage]: string } {
-	return {
-		[ClanPage.RuneScape]: `https://services.runescape.com/m=clan-home/clan/${transformName(clan, "%20")}`,
-		[ClanPage.RuneInfo]: `https://runeinfo.com/clan/${transformName(clan, "%20")}`,
-		[ClanPage.RunePixels]: `https://runepixels.com/clans/${transformName(clan, "-")}`,
-	};
-}
-
-/**
  * Represents what may provide a player's page.
  */
 export enum PlayerPage {

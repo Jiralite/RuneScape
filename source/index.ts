@@ -1,7 +1,11 @@
 // biome-ignore lint/performance/noBarrelFile: This is fine.
 export {
 	type ClanMember,
+	ClanPage,
 	ClanRank,
+	clanMotif,
+	clanPage,
+	clanPageRunepixels,
 	type FetchClanMembersOptions,
 	fetchClanMembers,
 } from "./clan.js";
@@ -22,12 +26,8 @@ export { Minigame, minigameSpotlight } from "./minigame-spotlight.js";
 export {
 	type AvatarOptions,
 	avatar,
-	ClanPage,
-	type ClanPageOptions,
 	type CreatedAccounts,
 	type CreatedAccountsOptions,
-	clanMotif,
-	clanPage,
 	createdAccounts,
 	type PlayerCountOptions,
 	PlayerPage,

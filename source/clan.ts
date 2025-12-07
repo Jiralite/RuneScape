@@ -111,3 +111,39 @@ export async function fetchClanMembers({
 		trim: true,
 	});
 }
+
+/**
+ * Returns a clan's motif.
+ *
+ * @param name - The name of a clan
+ */
+export function clanMotif(name: string): string {
+	return `https://secure.runescape.com/m=avatar-rs/${name}/clanmotif.png`;
+}
+
+/**
+ * Represents what may provide a clan's home page.
+ */
+export enum ClanPage {
+	RuneInfo = "RuneInfo",
+	RunePixels = "Runepixels",
+	RuneScape = "RuneScape",
+}
+
+/**
+ * Link to a clan's home page.
+ *
+ * @param clan - The clan's name
+ */
+export function clanPage(clan: string): string {
+	return `https://services.runescape.com/m=clan-home/clan/${clan}`;
+}
+
+/**
+ * Link to a clan's home page on Runepixels.
+ *
+ * @param clan - The clan's name
+ */
+export function clanPageRunepixels(clan: string): string {
+	return `https://runepixels.com/clans/${clan}`;
+}
