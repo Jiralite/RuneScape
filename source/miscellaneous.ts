@@ -47,46 +47,24 @@ export function avatar({ name, width, height }: AvatarOptions): string {
 }
 
 /**
- * Represents what may provide a player's page.
- */
-export enum PlayerPage {
-	RuneInfo = "RuneInfo",
-	RuneMetrics = "RuneMetrics",
-	RunePixels = "Runepixels",
-	RuneScape = "RuneScape",
-	RuneTracker = "RuneTracker",
-}
-
-/**
- * Represents the options to provide for retrieving player pages.
- */
-export interface PlayerPageOptions {
-	/**
-	 * The player's name.
-	 */
-	name: string;
-}
-
-/**
- * Retrieves a player's pages.
+ * Retrieves a player's RuneMetrics page.
  *
- * @param options - The options to provide
- * @returns An object containing sources to their links.
+ * @param playerName - The player name
  */
-export function playerPage({ name }: PlayerPageOptions): { [key in PlayerPage]: string } {
-	const urlSearchParams = new URLSearchParams();
-	urlSearchParams.set("user1", name);
+export function playerPageRuneMetrics(playerName: string): string {
+	return `https://apps.runescape.com/runemetrics/app/overview/player/${transformName(
+		playerName,
+		"%20",
+	)}`;
+}
 
-	return {
-		[PlayerPage.RuneScape]: `https://secure.runescape.com/m=hiscore/compare?${urlSearchParams}`,
-		[PlayerPage.RuneMetrics]: `https://apps.runescape.com/runemetrics/app/overview/player/${transformName(
-			name,
-			"%20",
-		)}`,
-		[PlayerPage.RuneInfo]: `https://runeinfo.com/profile/${transformName(name, "%20")}`,
-		[PlayerPage.RunePixels]: `https://runepixels.com/players/${transformName(name, "-")}`,
-		[PlayerPage.RuneTracker]: `https://runetracker.org/track-${transformName(name, "+")}`,
-	};
+/**
+ * Retrieves a player's Runepixels page.
+ *
+ * @param playerName - The player name
+ */
+export function playerPageRunepixels(playerName: string): string {
+	return `https://runepixels.com/players/${transformName(playerName, "-")}`;
 }
 
 /**

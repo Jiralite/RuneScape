@@ -550,3 +550,20 @@ export async function groupIronman({
 
 	return response.json() as Promise<GroupIronman>;
 }
+
+/**
+ * Link to a HiScore comparison page.
+ *
+ * @param player1 - The first player's name
+ * @param player2 - The second player's name
+ */
+export function hiScoreComparePage(player1: string, player2?: string | undefined): string {
+	const urlSearchParams = new URLSearchParams();
+	urlSearchParams.set("user1", player1);
+
+	if (player2 !== undefined) {
+		urlSearchParams.set("user2", player2);
+	}
+
+	return `https://secure.runescape.com/m=hiscore/compare?${urlSearchParams}`;
+}

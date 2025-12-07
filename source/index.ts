@@ -19,6 +19,7 @@ export {
 	type HiScoreOptions,
 	type HiScoreSkill,
 	hiScore,
+	hiScoreComparePage,
 	Skill,
 } from "./hi-scores.js";
 export { Jewel, jewel } from "./jewels.js";
@@ -30,10 +31,9 @@ export {
 	type CreatedAccountsOptions,
 	createdAccounts,
 	type PlayerCountOptions,
-	PlayerPage,
-	type PlayerPageOptions,
 	playerCount,
-	playerPage,
+	playerPageRuneMetrics,
+	playerPageRunepixels,
 } from "./miscellaneous.js";
 export { type PlayerDetail, type PlayerDetailsOptions, playerDetails } from "./player-details.js";
 export { raven } from "./raven.js";
