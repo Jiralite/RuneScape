@@ -635,6 +635,7 @@ export enum QuestTitle {
 	PlagueCity = "Plague City",
 	PlaguesEnd = "Plague's End",
 	PriestInPeril = "Priest in Peril",
+	PrincessAndThePauper = "Princess and the Pauper",
 	PurpleCat = "Purple Cat (miniquest)",
 	QuietBeforeTheSwarm = "Quiet Before the Swarm",
 	RagAndBoneMan = "Rag and Bone Man",
