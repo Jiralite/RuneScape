@@ -1,7 +1,9 @@
 name: Publish
 on:
   release:
-    types: [prereleased, released]
+    types:
+      - prereleased
+      - released
 permissions:
   id-token: write
 jobs:
@@ -27,8 +29,6 @@ jobs:
 
       - name: Publish package
         run: pnpm publish --provenance --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
   jsr:
     name: JSR
     runs-on: ubuntu-latest
