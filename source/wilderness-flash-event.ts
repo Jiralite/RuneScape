@@ -1,3 +1,5 @@
+import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "./utility/constants.js";
+
 const INITIAL_TIMESTAMP = Date.UTC(2_022, 9, 17, 11);
 
 // Stryke the Wyrm added: 5th February 2024 12:00.
@@ -110,6 +112,10 @@ const MODIFIED_SEQUENCE = [
 export function wildernessFlashEvent(timestamp: number): WildernessFlashEvent {
 	if (timestamp < INITIAL_TIMESTAMP) {
 		throw new RangeError("Wilderness Flash Events did not exist before 17th October 2022.");
+	}
+
+	if (timestamp >= DAILYSCAPE_REMOVAL_TIMESTAMP) {
+		throw new RangeError("Wilderness Flash Events were removed on 16th March 2026 13:15.");
 	}
 
 	const hoursElapsed = Math.floor((timestamp - INITIAL_TIMESTAMP) / 3_600_000);
