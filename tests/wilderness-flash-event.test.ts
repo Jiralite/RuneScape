@@ -12,6 +12,21 @@ describe("wildernessFlashEvent", () => {
 			const timestamp = Date.UTC(2022, 9, 17, 11, 0, 0);
 			expect(wildernessFlashEvent(timestamp)).toBe(WildernessFlashEvent.SpiderSwarm);
 		});
+
+		test("Returns valid result at the last second before removal.", () => {
+			const timestamp = Date.UTC(2026, 2, 16, 13, 14, 59);
+			expect(() => wildernessFlashEvent(timestamp)).not.toThrowError();
+		});
+
+		test("Throws a range error at the removal timestamp.", () => {
+			const timestamp = Date.UTC(2026, 2, 16, 13, 15);
+			expect(() => wildernessFlashEvent(timestamp)).toThrowError(RangeError);
+		});
+
+		test("Throws a range error for timestamps after removal.", () => {
+			const timestamp = Date.UTC(2026, 2, 16, 13, 15, 1);
+			expect(() => wildernessFlashEvent(timestamp)).toThrowError(RangeError);
+		});
 	});
 
 	describe("Original sequence (October 2022–February 2024).", () => {

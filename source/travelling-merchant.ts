@@ -1,3 +1,4 @@
+import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "./utility/constants.js";
 import { nextInt, runedate as utilityRunedate } from "./utility/functions.js";
 
 /**
@@ -141,6 +142,11 @@ export function stock(
 ): [(typeof SLOT_1_AND_2)[number], (typeof SLOT_1_AND_2)[number], (typeof SLOTS)[3][number]] {
 	const date = new Date(timestamp);
 	date.setUTCHours(0, 0, 0, 0);
+
+	if (date.getTime() >= DAILYSCAPE_REMOVAL_TIMESTAMP) {
+		throw new RangeError("The Travelling Merchant was disabled on 16th March 2026 13:15.");
+	}
+
 	const currentRunedate = utilityRunedate(date.getTime());
 	return [slot1(currentRunedate)!, slot2(currentRunedate)!, slot3(currentRunedate)!];
 }
