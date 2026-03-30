@@ -473,6 +473,7 @@ export enum QuestTitle {
 	ColdWar = "Cold War",
 	Contact = "Contact!",
 	CooksAssistant = "Cook's Assistant",
+	CorporateEggSpionage = "Corporate Egg-spionage",
 	CreatureOfFenkenstrain = "Creature of Fenkenstrain",
 	CrocodileTears = "Crocodile Tears",
 	CurseOfTheBlackStone = "Curse of the Black Stone",
