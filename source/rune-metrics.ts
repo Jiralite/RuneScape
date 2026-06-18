@@ -673,6 +673,7 @@ export enum QuestTitle {
 	SaltInTheWound = "Salt in the Wound",
 	ScorpionCatcher = "Scorpion Catcher",
 	SeaSlug = "Sea Slug",
+	SecretsOFAmberfell = "Secrets of Amberfell",
 	ShadesOfMortton = "Shades of Mort'ton",
 	ShadowOfTheStorm = "Shadow of the Storm",
 	SheepHerder = "Sheep Herder",
