@@ -733,6 +733,7 @@ export enum QuestTitle {
 	TheNeedleSkips = "The Needle Skips",
 	ThePathOfGlouphrie = "The Path of Glouphrie",
 	ThePrisonerOfGlouphrie = "The Prisoner of Glouphrie",
+	TheresNoPlaceLikeHome = "There's No Place Like Home...",
 	TheRestlessGhost = "The Restless Ghost",
 	TheSlugMenace = "The Slug Menace",
 	TheSpiritOfWar = "The Spirit of War",
