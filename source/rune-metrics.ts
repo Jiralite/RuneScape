@@ -738,6 +738,7 @@ export enum QuestTitle {
 	TheSpiritOfWar = "The Spirit of War",
 	TheTaleOfTheMuspah = "The Tale of the Muspah",
 	TheTempleatSenntisten = "The Temple at Senntisten",
+	TheresNoPlaceLikeHome = "There's No Place Like Home...",
 	TheTouristTrap = "The Tourist Trap",
 	TheVaultOfShadows = "The Vault of Shadows",
 	TheVoidStaresBack = "The Void Stares Back",
