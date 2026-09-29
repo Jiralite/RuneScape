@@ -565,6 +565,7 @@ export enum QuestTitle {
 	HeartsOfSanguine = "Hearts of Sanguine",
 	Heartstealer = "Heartstealer",
 	HelpingLaniakea = "Helping Laniakea",
+	HeraldsOfCrimson = "Heralds of Crimson",
 	HermitPermits = "Hermit Permits",
 	HeroesQuest = "Heroes' Quest",
 	HerosWelcome = "Hero's Welcome",
