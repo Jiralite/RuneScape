@@ -1,6 +1,6 @@
 {
 	"name": "runescape",
-	"version": "0.14.6",
+	"version": "0.14.7",
 	"description": "A library to interact with the non-existent RuneScape API.",
 	"keywords": [
 		"RuneScape",
