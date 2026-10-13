@@ -433,6 +433,7 @@ export enum QuestTitle {
 	AVoidDance = "A Void Dance",
 	Aftermath = "Aftermath",
 	AllFiredUp = "All Fired Up",
+	AllSoulsEve = "All Souls' Eve",
 	AlphaVsOmega = "Alpha vs Omega",
 	AncientAwakening = "Ancient Awakening",
 	AnimalMagnetism = "Animal Magnetism",
