@@ -1,8 +1,21 @@
 /**
  * Represents the RuneScape HiScore instances.
  *
- * @remarks Every instance has an independent database.
+ * @remarks
+ * Every instance has an independent database.
+ *
+ * Some of these instances (like Ironman, Skiller, etc.) include a subset of players from the game's
+ * main instance. This means that there are situations where a player will stop being eligible to
+ * appear in one, such as...
+ *
+ * - HCIM loses their last life: No longer eligible for Hardcore Ironman hiscores
+ * - Skiller gains a level in a combat skill: No longer eligible for Skiller hiscores
+ *
+ * If this occurs, they will still appear on that instance, but their stats will be frozen at that
+ * point. For example, if the skiller makes further gains, those will be reflected on the standard
+ * Hiscores but not on the Skiller-specific ones.
  * @see {@link https://developer.runescape.com/platform/modules/hiscores/instances.html}
+ * @see {@link https://developer.runescape.com/platform/modules/hiscores/instances.html#eligibility-changes}
  */
 export enum HiScoreInstance {
 	/**
@@ -26,8 +39,21 @@ export enum HiScoreInstance {
 /**
  * Represents the Old School RuneScape HiScore instances.
  *
- * @remarks Every instance has an independent database.
+ * @remarks
+ * Every instance has an independent database.
+ *
+ * Some of these instances (like Ironman, Skiller, etc.) include a subset of players from the game's
+ * main instance. This means that there are situations where a player will stop being eligible to
+ * appear in one, such as...
+ *
+ * - HCIM loses their last life: No longer eligible for Hardcore Ironman hiscores
+ * - Skiller gains a level in a combat skill: No longer eligible for Skiller hiscores
+ *
+ * If this occurs, they will still appear on that instance, but their stats will be frozen at that
+ * point. For example, if the skiller makes further gains, those will be reflected on the standard
+ * Hiscores but not on the Skiller-specific ones.
  * @see {@link https://developer.runescape.com/platform/modules/hiscores/instances.html}
+ * @see {@link https://developer.runescape.com/platform/modules/hiscores/instances.html#eligibility-changes}
  */
 export enum OldSchoolHiScoreInstance {
 	/**
