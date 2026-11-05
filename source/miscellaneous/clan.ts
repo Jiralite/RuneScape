@@ -1,5 +1,6 @@
 import { parse } from "csv-parse/sync";
 import { RuneScapeAPIError } from "../utility/error.js";
+import { transformName } from "../utility/functions.js";
 import { makeRequest } from "../utility/make-request.js";
 
 /**
@@ -136,7 +137,7 @@ export enum ClanPage {
  * @param clan - The clan's name
  */
 export function clanPage(clan: string): string {
-	return `https://services.runescape.com/m=clan-home/clan/${clan}`;
+	return `https://services.runescape.com/m=clan-home/clan/${transformName(clan, "%20")}`;
 }
 
 /**
@@ -145,5 +146,5 @@ export function clanPage(clan: string): string {
  * @param clan - The clan's name
  */
 export function clanPageRunepixels(clan: string): string {
-	return `https://runepixels.com/clans/${clan}`;
+	return `https://runepixels.com/clans/${transformName(clan, "-")}`;
 }
