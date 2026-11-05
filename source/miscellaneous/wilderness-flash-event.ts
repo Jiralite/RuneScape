@@ -1,4 +1,4 @@
-import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "./utility/constants.js";
+import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "../utility/constants.js";
 
 const INITIAL_TIMESTAMP = Date.UTC(2_022, 9, 17, 11);
 

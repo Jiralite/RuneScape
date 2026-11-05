@@ -1,4 +1,4 @@
-import { nextInt, runedate } from "./utility/functions.js";
+import { nextInt, runedate } from "../utility/functions.js";
 
 /**
  * The two jewels behind doors.
@@ -12,7 +12,6 @@ export enum Jewel {
  * Returns the accessible jewel.
  *
  * @param timestamp - A Unix timestamp.
- * @returns The accessible jewel.
  */
 export function jewel(timestamp: number): Jewel | null {
 	const slot = nextInt(BigInt(Math.trunc(runedate(timestamp))) * 2n ** 32n, 5n);

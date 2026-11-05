@@ -1,5 +1,8 @@
 import { describe, expect, test } from "vitest";
-import { WildernessFlashEvent, wildernessFlashEvent } from "../source/wilderness-flash-event.js";
+import {
+	WildernessFlashEvent,
+	wildernessFlashEvent,
+} from "../../source/miscellaneous/wilderness-flash-event.js";
 
 describe("wildernessFlashEvent", () => {
 	describe("Error handling.", () => {

@@ -1,11 +1,10 @@
-import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "./utility/constants.js";
+import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "../utility/constants.js";
 
 /**
  * Returns if a Wilderness Warbands camp is set up.
  *
  * @remarks The hour will be checked.
  * @param timestamp - A Unix timestamp.
- * @returns Whether a Wilderness Warbands camp is set up.
  * @see {@link https://runescape.wiki/w/Wilderness_Warbands}
  */
 export function wildernessWarbands(timestamp: number): boolean {

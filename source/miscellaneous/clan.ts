@@ -1,6 +1,6 @@
 import { parse } from "csv-parse/sync";
-import { RuneScapeAPIError } from "./utility/error.js";
-import { makeRequest } from "./utility/make-request.js";
+import { RuneScapeAPIError } from "../utility/error.js";
+import { makeRequest } from "../utility/make-request.js";
 
 /**
  * Represents a rank in a clan.
@@ -77,13 +77,13 @@ export interface FetchClanMembersOptions {
  * Returns the clan members of a clan.
  *
  * @param options - The options to provide
- * @returns Clan members data.
  */
 export async function fetchClanMembers({
 	clanName,
 	abortSignal,
-}: FetchClanMembersOptions): Promise<ClanMember[]> {
-	const url = `https://secure.runescape.com/m=clan-hiscores/members_lite.ws?clanName=${clanName}`;
+}: FetchClanMembersOptions): Promise<readonly ClanMember[]> {
+	const url =
+		`https://secure.runescape.com/m=clan-hiscores/members_lite.ws?clanName=${clanName}` as const;
 	const response = await makeRequest(url, abortSignal);
 
 	if (!response.ok) {

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { Minigame, minigameSpotlight } from "../source/minigame-spotlight.js";
+import { Minigame, minigameSpotlight } from "../../source/miscellaneous/minigame-spotlight.js";
 
 describe("minigameSpotlight", () => {
 	describe("Error handling.", () => {

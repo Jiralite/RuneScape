@@ -9,7 +9,6 @@ const chunk = 65_536n as const;
  * Returns the current Runedate.
  *
  * @param timestamp - A Unix timestamp.
- * @returns The Runedate.
  */
 export function runedate(timestamp: number): number {
 	return Math.floor(((timestamp - Date.UTC(2_002, 1, 27)) / 86_400_000) * 100) / 100;
@@ -57,7 +56,6 @@ export function nextInt(seed: bigint, no: bigint, repeats = 1): bigint {
  *
  * @param name - The name to transform
  * @param delimiter - The delimiter to use
- * @returns The transformed name.
  * @internal
  */
 export function transformName(name: string, delimiter: string) {
