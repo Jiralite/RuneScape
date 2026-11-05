@@ -1,4 +1,4 @@
-import { makeRequest } from "./utility/make-request.js";
+import { makeRequest } from "../utility/make-request.js";
 
 interface RawPlayerDetail {
 	clan?: string;
@@ -45,7 +45,7 @@ export interface PlayerDetailsOptions {
 	/**
 	 * An array of player names.
 	 */
-	names: string[];
+	names: readonly string[];
 	/**
 	 * The abort signal for the fetch.
 	 */
@@ -56,12 +56,11 @@ export interface PlayerDetailsOptions {
  * Returns player details.
  *
  * @param options - The options to provide
- * @returns An array containing the resulting player details.
  */
 export async function playerDetails({
 	names,
 	abortSignal,
-}: PlayerDetailsOptions): Promise<PlayerDetail[]> {
+}: PlayerDetailsOptions): Promise<readonly PlayerDetail[]> {
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("names", JSON.stringify(names));
 	urlSearchParams.set("callback", "jQuery000000000000000_0000000000");

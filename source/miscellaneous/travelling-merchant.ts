@@ -1,5 +1,5 @@
-import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "./utility/constants.js";
-import { nextInt, runedate as utilityRunedate } from "./utility/functions.js";
+import { DAILYSCAPE_REMOVAL_TIMESTAMP } from "../utility/constants.js";
+import { nextInt, runedate as utilityRunedate } from "../utility/functions.js";
 
 /**
  * Represents an item used in the shop.
@@ -87,7 +87,6 @@ const SLOTS = {
  * @param runedate - The Runedate.
  * @param n1 - The first number.
  * @param n2 - The second number.
- * @returns An index used to locate an item for a slot.
  * @internal
  */
 function getSlots(runedate: number, n1: number, n2: bigint) {
@@ -99,7 +98,6 @@ function getSlots(runedate: number, n1: number, n2: bigint) {
  * Returns the first slot of the stock.
  *
  * @param runedate - A Runedate.
- * @returns The first slot of the stock.
  * @internal
  */
 function slot1(runedate: number) {
@@ -111,7 +109,6 @@ function slot1(runedate: number) {
  * Returns the second slot of the stock.
  *
  * @param runedate - A Runedate.
- * @returns The second slot of the stock.
  * @internal
  */
 function slot2(runedate: number) {
@@ -123,7 +120,6 @@ function slot2(runedate: number) {
  * Returns the third slot of the stock.
  *
  * @param runedate - A Runedate.
- * @returns The third slot of the stock.
  * @internal
  */
 function slot3(runedate: number) {
@@ -135,7 +131,6 @@ function slot3(runedate: number) {
  * Returns the stock for the travelling merchant.
  *
  * @param timestamp - A Unix timestamp.
- * @returns An array containing the stock.
  */
 export function stock(
 	timestamp: number,

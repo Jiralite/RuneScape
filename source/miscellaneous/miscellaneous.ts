@@ -1,6 +1,6 @@
-import { RuneScapeAPIError } from "./utility/error.js";
-import { transformName } from "./utility/functions.js";
-import { makeRequest } from "./utility/make-request.js";
+import { RuneScapeAPIError } from "../utility/error.js";
+import { transformName } from "../utility/functions.js";
+import { makeRequest } from "../utility/make-request.js";
 
 /**
  * Represents the options to provide for retrieving a player's avatar.
@@ -47,18 +47,6 @@ export function avatar({ name, width, height }: AvatarOptions): string {
 }
 
 /**
- * Retrieves a player's RuneMetrics page.
- *
- * @param playerName - The player name
- */
-export function playerPageRuneMetrics(playerName: string): string {
-	return `https://apps.runescape.com/runemetrics/app/overview/player/${transformName(
-		playerName,
-		"%20",
-	)}`;
-}
-
-/**
  * Retrieves a player's Runepixels page.
  *
  * @param playerName - The player name
@@ -81,7 +69,6 @@ export interface PlayerCountOptions {
  * Retrieves the total number of players online in RuneScape and OldSchool RuneScape.
  *
  * @param options - The options to provide
- * @returns The number of online players.
  */
 export async function playerCount({ abortSignal }: PlayerCountOptions = {}): Promise<number> {
 	const urlSearchParams = new URLSearchParams();
@@ -131,7 +118,6 @@ export interface CreatedAccountsOptions {
  * Retrieves the amount of created accounts.
  *
  * @param options - The options to provide
- * @returns An object with the created accounts data.
  */
 export async function createdAccounts({
 	abortSignal,
@@ -153,4 +139,21 @@ export async function createdAccounts({
 		accounts: body.accounts,
 		accountsFormatted: body.accountsformatted,
 	};
+}
+
+/**
+ * Link to a HiScore comparison page.
+ *
+ * @param player1 - The first player's name
+ * @param player2 - The second player's name
+ */
+export function hiScoreComparePage(player1: string, player2?: string | undefined): string {
+	const urlSearchParams = new URLSearchParams();
+	urlSearchParams.set("user1", player1);
+
+	if (player2 !== undefined) {
+		urlSearchParams.set("user2", player2);
+	}
+
+	return `https://secure.runescape.com/m=hiscore/compare?${urlSearchParams}`;
 }

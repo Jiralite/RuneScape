@@ -1,23 +1,21 @@
 /**
  * Error codes that can be used to track a specific error.
+ *
+ * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/index.html#error-codes}
  */
 export enum RuneScapeErrorCode {
 	/**
-	 * The generic error when fetching a player's profile data as viewed on RuneMetrics.
+	 * Internal server error.
 	 */
-	ProfileError = 0,
+	InternalError = 0,
 	/**
-	 * This seems to be returned on banned players.
+	 * The provided player doesn't exist, or is otherwise hidden from public view.
 	 */
-	ProfileNotAMember = 1,
+	PlayerNotFound = 1,
 	/**
-	 * The RuneMetrics profile of this player is not public.
+	 * This endpoint only works for members, and the provided player is not a member.
 	 */
-	ProfilePrivate = 2,
-	/**
-	 * It is supposable this player does not exist.
-	 */
-	ProfileNone = 3,
+	PlayerNotMember = 2,
 }
 
 /**
@@ -26,10 +24,9 @@ export enum RuneScapeErrorCode {
  * @internal
  */
 const Messages = {
-	[RuneScapeErrorCode.ProfileError]: "Failed to fetch the RuneMetrics profile of this player.",
-	[RuneScapeErrorCode.ProfileNotAMember]: "This player is banned.",
-	[RuneScapeErrorCode.ProfilePrivate]: "This player's RuneMetrics profile is not public.",
-	[RuneScapeErrorCode.ProfileNone]: "Unknown player.",
+	[RuneScapeErrorCode.InternalError]: "The Adventurer's Log failed to fulfil this request.",
+	[RuneScapeErrorCode.PlayerNotFound]: "This player does not exist or is hidden from public view.",
+	[RuneScapeErrorCode.PlayerNotMember]: "This player is not a member.",
 } as const satisfies Readonly<Record<RuneScapeErrorCode, string>>;
 
 /**
@@ -43,16 +40,16 @@ export class RuneScapeAPIError extends Error {
 	public readonly statusCode: number;
 
 	/**
-	 * The fully quallified URL of the request.
+	 * The fully qualified URL of the request.
 	 */
 	public readonly url: string;
 
 	/**
 	 * Constructs an error for the API.
 	 *
-	 * @param message - The name of this error
+	 * @param message - The message of this error
 	 * @param statusCode - The status code of the error
-	 * @param url - The fully quallified URL of the request
+	 * @param url - The fully qualified URL of the request
 	 */
 	public constructor(
 		message: Error["message"],
@@ -80,7 +77,7 @@ export class RuneScapeError extends Error {
 	public readonly rawCode: string;
 
 	/**
-	 * The fully quallified URL of the request.
+	 * The fully qualified URL of the request.
 	 */
 	public readonly url: string;
 
@@ -89,7 +86,7 @@ export class RuneScapeError extends Error {
 	 *
 	 * @param code - The defined error code
 	 * @param rawCode - The raw error that yielded this error
-	 * @param url - The fully quallified URL of the request
+	 * @param url - The fully qualified URL of the request
 	 */
 	public constructor(
 		code: RuneScapeError["code"],
