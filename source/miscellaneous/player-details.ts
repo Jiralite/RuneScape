@@ -66,12 +66,14 @@ export async function playerDetails({
 	urlSearchParams.set("callback", "jQuery000000000000000_0000000000");
 
 	const response = await makeRequest(
-		`https://secure.runescape.com/m=website-data/playerDetails.ws?${urlSearchParams}`,
+		`https://secure.runescape.com/m=website-data/playerDetails.ws?${urlSearchParams.toString()}`,
 		abortSignal,
 	);
 
 	const body = await response.text();
-	const json: RawPlayerDetail[] = JSON.parse(body.slice(body.indexOf("["), body.indexOf("]") + 1));
+	const json = JSON.parse(
+		body.slice(body.indexOf("["), body.indexOf("]") + 1),
+	) as readonly RawPlayerDetail[];
 
 	return json.map(({ isSuffix, recruiting, name, clan, title }) => ({
 		isSuffix,

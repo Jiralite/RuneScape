@@ -1,48 +1,40 @@
 name: Test
 on:
-    push:
-      branches:
+  push:
+    branches:
       - main
-    pull_request:
+  pull_request:
 permissions:
   contents: read
 jobs:
-  typographical-errors:
-    name: Typographical errors
+  validation:
+    name: Validation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - &checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1.
 
-      - name: Scan for typographical errors
-        uses: crate-ci/typos@master
-  style:
-    name: Styling
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: biomejs/setup-biome@v2
-
-      - name: Run Biome
-        run: biome ci --reporter=github
-  testing:
-    name: Testing
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - name: Install pnpm and Node.js
+        uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2.
         with:
-          version: 10.23.0
-
-      - name: Install Node.js
-        uses: actions/setup-node@v5
-        with:
-          node-version: 24
+          install: false
 
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build
+        run: pnpm run build
+
+      - name: Check code quality
+        run: pnpm run lint:ci
+
       - name: Run tests
         run: pnpm run test
+  typographical-errors:
+    name: Typographical errors
+    runs-on: ubuntu-latest
+    steps:
+      - *checkout
+
+      - name: Scan for typographical errors
+        uses: crate-ci/typos@4c8b7f51ca60df14e3c5ca82770dfbbe6c3dae85 # v1.52.0.

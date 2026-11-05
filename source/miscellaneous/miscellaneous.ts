@@ -42,7 +42,7 @@ export function avatar({ name, width, height }: AvatarOptions): string {
 	}
 
 	return `https://secure.runescape.com/m=avatar-rs/${transformName(name, "%20")}/chat.png${
-		String(urlSearchParams) ? `?${urlSearchParams}` : ""
+		String(urlSearchParams) ? `?${urlSearchParams.toString()}` : ""
 	}`;
 }
 
@@ -74,7 +74,7 @@ export async function playerCount({ abortSignal }: PlayerCountOptions = {}): Pro
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("varname", "iPlayerCount");
 	urlSearchParams.set("callback", "jQuery000000000000000_0000000000");
-	const url = `https://runescape.com/player_count.js?${urlSearchParams}` as const;
+	const url = `https://runescape.com/player_count.js?${urlSearchParams.toString()}` as const;
 	const response = await makeRequest(url, abortSignal);
 
 	if (!response.ok) {
@@ -147,7 +147,7 @@ export async function createdAccounts({
  * @param player1 - The first player's name
  * @param player2 - The second player's name
  */
-export function hiScoreComparePage(player1: string, player2?: string | undefined): string {
+export function hiScoreComparePage(player1: string, player2?: string): string {
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("user1", player1);
 
@@ -155,5 +155,5 @@ export function hiScoreComparePage(player1: string, player2?: string | undefined
 		urlSearchParams.set("user2", player2);
 	}
 
-	return `https://secure.runescape.com/m=hiscore/compare?${urlSearchParams}`;
+	return `https://secure.runescape.com/m=hiscore/compare?${urlSearchParams.toString()}`;
 }

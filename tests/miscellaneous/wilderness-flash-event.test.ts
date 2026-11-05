@@ -8,7 +8,7 @@ describe("wildernessFlashEvent", () => {
 	describe("Error handling.", () => {
 		test("Throws RangeError for timestamps before 17th October 2022.", () => {
 			const timestamp = Date.UTC(2022, 9, 17, 10, 59, 59);
-			expect(() => wildernessFlashEvent(timestamp)).toThrowError(RangeError);
+			expect(() => wildernessFlashEvent(timestamp)).toThrow(RangeError);
 		});
 
 		test("Returns valid result at exactly the start time.", () => {
@@ -18,17 +18,17 @@ describe("wildernessFlashEvent", () => {
 
 		test("Returns valid result at the last second before removal.", () => {
 			const timestamp = Date.UTC(2026, 2, 16, 13, 14, 59);
-			expect(() => wildernessFlashEvent(timestamp)).not.toThrowError();
+			expect(() => wildernessFlashEvent(timestamp)).not.toThrow();
 		});
 
 		test("Throws a range error at the removal timestamp.", () => {
 			const timestamp = Date.UTC(2026, 2, 16, 13, 15);
-			expect(() => wildernessFlashEvent(timestamp)).toThrowError(RangeError);
+			expect(() => wildernessFlashEvent(timestamp)).toThrow(RangeError);
 		});
 
 		test("Throws a range error for timestamps after removal.", () => {
 			const timestamp = Date.UTC(2026, 2, 16, 13, 15, 1);
-			expect(() => wildernessFlashEvent(timestamp)).toThrowError(RangeError);
+			expect(() => wildernessFlashEvent(timestamp)).toThrow(RangeError);
 		});
 	});
 

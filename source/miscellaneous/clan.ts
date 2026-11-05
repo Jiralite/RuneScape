@@ -96,7 +96,7 @@ export async function fetchClanMembers({
 		cast: (value, { column }) =>
 			// Spaces in player names are "�".
 			column === "clanmate"
-				? value.replace(/�/g, " ")
+				? value.replaceAll("�", " ")
 				: column === "clanRank"
 					? APIClanRankToClanRank[value as keyof typeof APIClanRankToClanRank]
 					: column === "totalXP" || column === "kills"

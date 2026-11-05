@@ -11,20 +11,23 @@ jobs:
     name: npm
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - &checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1.
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - &setup
+        name: Install pnpm and Node.js
+        uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2.
         with:
-          version: 10.23.0
+          install: false
 
-      - name: Install Node.js
-        uses: actions/setup-node@v5
+      - name: Configure the npm registry
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0.
         with:
-          node-version: 24
+          node-version: 26
           registry-url: https://registry.npmjs.org
 
-      - name: Install dependencies
+      - &install
+        name: Install dependencies
         run: pnpm install
 
       - name: Publish package
@@ -36,14 +39,11 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v6
+      - *checkout
 
-      - name: Install dependencies
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.12.1
-          run_install: |
-            - args: [--frozen-lockfile]
+      - *setup
+
+      - *install
 
       - name: Publish package
         run: pnpm dlx jsr publish

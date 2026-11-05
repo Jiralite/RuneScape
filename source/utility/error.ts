@@ -33,7 +33,7 @@ const Messages = {
  * An error returned from the API.
  */
 export class RuneScapeAPIError extends Error {
-	public override readonly name = this.constructor.name;
+	public override readonly name = "RuneScapeAPIError";
 	/**
 	 * The status code of the error.
 	 */
@@ -92,6 +92,7 @@ export class RuneScapeError extends Error {
 		code: RuneScapeError["code"],
 		rawCode: RuneScapeError["rawCode"],
 		url: RuneScapeError["url"],
+		// oxlint-disable-next-line unicorn/custom-error-definition -- The raw code is part of the name.
 	) {
 		super(Messages[code]);
 		this.code = code;

@@ -139,7 +139,7 @@ export async function groupIronman({
 	}
 
 	const url =
-		`https://secure.runescape.com/m=runescape_gim_hiscores/v1/groupScores?${urlSearchParams}` as const;
+		`https://secure.runescape.com/m=runescape_gim_hiscores/v1/groupScores?${urlSearchParams.toString()}` as const;
 
 	const response = await makeRequest(url, abortSignal);
 

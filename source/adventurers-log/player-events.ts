@@ -245,21 +245,21 @@ export async function playerEvents({
  */
 export function standardisePlayerEventLog(log: string): string {
 	// Lowercase articles that appear after double spaces before normalising.
-	let result = log.replace(/\s{2,}(A|An)\s/g, (_match, article) => {
+	let result = log.replaceAll(/\s{2,}(A|An)\s/g, (_match, article: string) => {
 		return ` ${article.toLowerCase()} `;
 	});
 
 	// Normalise remaining spaces.
-	result = result.replace(/\s+/g, " ");
+	result = result.replaceAll(/\s+/g, " ");
 
 	// Format experience numbers with commas and lowercase (e.g. "124000000XP" to "124,000,000 xp").
-	result = result.replace(/(\d+)XP/gi, (_match, number) => {
+	result = result.replaceAll(/(\d+)XP/gi, (_match, number) => {
 		const formattedNumber = Number(number).toLocaleString("en-GB");
 		return `${formattedNumber} xp`;
 	});
 
 	// Format experience numbers before "experience points" (e.g. "100000000 experience points" to "100,000,000 experience points").
-	result = result.replace(/(\d+)\s+experience points/gi, (_match, number) => {
+	result = result.replaceAll(/(\d+)\s+experience points/gi, (_match, number) => {
 		const formattedNumber = Number(number).toLocaleString("en-GB");
 		return `${formattedNumber} experience points`;
 	});

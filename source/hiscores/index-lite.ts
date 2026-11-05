@@ -542,7 +542,7 @@ async function fetchIndexLite(
 	const urlSearchParams = new URLSearchParams();
 	urlSearchParams.set("player", name);
 	const url =
-		`https://secure.runescape.com/m=${instance}/index_lite.json?${urlSearchParams}` as const;
+		`https://secure.runescape.com/m=${instance}/index_lite.json?${urlSearchParams.toString()}` as const;
 	const response = await makeRequest(url, abortSignal);
 
 	// Missing players and instances that are not running respond with HTML.

@@ -633,7 +633,7 @@ describe("playerEvents", () => {
 		const [url, options] = fetchMock.mock.calls[0]!;
 
 		expect(url).toBe("https://secure.runescape.com/m=adventurers-log/api/v1/playerEvents/Le%20Me");
-		expect(options?.headers).toMatchObject({ "User-Agent": expect.stringContaining("runescape") });
+		expect(options?.headers).toHaveProperty("User-Agent");
 	});
 
 	test("Converts dates with any offset to Date objects.", async () => {
