@@ -4,7 +4,7 @@
  * @remarks This must match the version in `package.json` and `jsr.json`. A test enforces this.
  * @internal
  */
-export const VERSION = "0.14.7" as const;
+export const VERSION = "1.0.0" as const;
 
 /**
  * The timestamp at which DailyScape was removed.
