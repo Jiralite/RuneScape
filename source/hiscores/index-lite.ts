@@ -84,10 +84,18 @@ export interface HiScoreSkill<T extends Skill | OldSchoolSkill | "Overall"> {
 	rank: number;
 	/**
 	 * Level the player has in this skill (or total level, for "Overall").
+	 *
+	 * @remarks
+	 * In some older Hiscore records, `level` and `xp` will be set to `-1`, which signifies that no data
+	 * is available - see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#partial-data} for an explanation.
 	 */
 	level: number;
 	/**
 	 * XP the player has in this skill (or total XP, for "Overall").
+	 *
+	 * @remarks
+	 * In some older Hiscore records, `level` and `xp` will be set to `-1`, which signifies that no data
+	 * is available - see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#partial-data} for an explanation.
 	 */
 	xp: number;
 }
@@ -128,6 +136,12 @@ export interface HiScoreActivity {
 	name: string;
 	/**
 	 * Position of this player (starting at 1) in this table, or `-1` if they are not ranked.
+	 *
+	 * @remarks
+	 * Hiscore will automatically assign a rank to the top 2,000,000 players in each table. If multiple
+	 * players have the same value, the one that got there first will be ranked higher. Players below
+	 * that point will still have the value stored, but no rank will be assigned.
+	 * @see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#tables}
 	 */
 	rank: number;
 	/**
@@ -135,7 +149,7 @@ export interface HiScoreActivity {
 	 *
 	 * @remarks
 	 * In some older Hiscore records, `score` will be set to `-1`, which signifies that no data is
-	 * available - see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#partial-data | Partial data} for an explanation.
+	 * available - see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#partial-data} for an explanation.
 	 */
 	score: number;
 }
@@ -143,7 +157,11 @@ export interface HiScoreActivity {
 /**
  * Represents the circumstances of a Hardcore Ironman player's death.
  *
- * @remarks Old School deaths do not include any data for the killer, reason or description fields.
+ * @remarks
+ * This object is only present in the Skill object with ID 0 and name "Overall" on the Hardcore
+ * Ironman instances, and only for players which have been recorded as dead.
+ *
+ * Old School deaths do not include any data for the killer, reason or description fields.
  * @see {@link https://developer.runescape.com/platform/modules/hiscores/index-lite.html#death-record-object}
  */
 export interface HiScoreDeath {
@@ -575,8 +593,16 @@ async function fetchIndexLite(
 /**
  * Returns the player's HiScore data.
  *
+ * @remarks
+ * Hiscores will update within a couple of seconds when any of these events occurs:
+ *
+ * - Player logs out
+ * - Player hops to a different world
+ * - Player loses eligibility for a specific Hiscore instance (e.g. Hardcore Ironman losing their last
+ * life, or an Old School skill pure levelling up a combat skill)
  * @param options - The options to provide
  * @see {@link https://developer.runescape.com/platform/modules/hiscores/index-lite.html}
+ * @see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#update-delays}
  */
 export async function hiScore({
 	name,
@@ -629,8 +655,16 @@ export async function hiScore({
 /**
  * Returns the player's Old School RuneScape HiScore data.
  *
+ * @remarks
+ * Hiscores will update within a couple of seconds when any of these events occurs:
+ *
+ * - Player logs out
+ * - Player hops to a different world
+ * - Player loses eligibility for a specific Hiscore instance (e.g. Hardcore Ironman losing their last
+ * life, or an Old School skill pure levelling up a combat skill)
  * @param options - The options to provide
  * @see {@link https://developer.runescape.com/platform/modules/hiscores/index-lite.html}
+ * @see {@link https://developer.runescape.com/platform/modules/hiscores/index.html#update-delays}
  */
 export async function oldSchoolHiScore({
 	name,

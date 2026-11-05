@@ -156,6 +156,14 @@ export interface PlayerEvent {
 	type: PlayerEventType;
 	/**
 	 * Date/time for when this event occurred.
+	 *
+	 * @remarks
+	 * These events will appear without the player needing to log out. In most cases, this will be
+	 * almost instant, but NPC kills and level-ups may be delayed as they are batched - e.g. 30
+	 * consecutive kills of the Kalphite Queen will show up as a single 30-kill event, rather than as
+	 * 30 distinct events. The `date` field on the event will represent when the batch was added to the
+	 * log.
+	 * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/player-events.html#update-delays}
 	 */
 	date: Date;
 	/**
@@ -206,10 +214,17 @@ export interface PlayerEventsOptions {
  * Returns the 20 most recent events of a player.
  *
  * @remarks
- * This only works for players with an active membership. New events may take up to 10 minutes to
- * appear.
+ * Players must have an active membership, and they must have the relevant event types enabled
+ * in-game (see {@link https://developer.runescape.com/platform/modules/adventurers-log/player-events.html#privacy}).
+ *
+ * The Adventurer's Log caches responses, so new events may not be returned by the API for up to 10
+ * minutes.
+ *
+ * This only applies to the main RuneScape game, and not to special game modes like Leagues, or to
+ * Old School.
  * @param options - The options to provide
  * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/player-events.html}
+ * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/index.html#about-this-module}
  */
 export async function playerEvents({
 	name,

@@ -525,9 +525,19 @@ export interface PlayerQuestsOptions {
 /**
  * Returns the player's quest data.
  *
- * @remarks Newly synchronised data may take up to 10 minutes to appear.
+ * @remarks
+ * This data will synchronise to Adventurer's Log when a player logs out, hops worlds, and at
+ * semi-regular intervals during gameplay.
+ *
+ * The Adventurer's Log caches responses, so newly synchronised data may not be returned by the API
+ * for up to 10 minutes.
+ *
+ * This only applies to the main RuneScape game, and not to special game modes like Leagues, or to
+ * Old School.
  * @param options - The options to provide
  * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/player-quests.html}
+ * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/player-quests.html#update-delays}
+ * @see {@link https://developer.runescape.com/platform/modules/adventurers-log/index.html#about-this-module}
  */
 export async function playerQuests({
 	name,
